@@ -1,0 +1,46 @@
+<resources>
+
+    <!-- Base Application Theme -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorPrimary</item>
+
+        <item name="materialCalendarStyle">@style/Widget.MaterialComponents.MaterialCalendar</item>
+        <item name="materialCalendarFullscreenTheme">@style/ThemeOverlay.MaterialComponents.MaterialCalendar.Fullscreen</item>
+        <item name="materialCalendarTheme">@style/ThemeOverlay.MaterialComponents.MaterialCalendar</item>
+
+<!--        <item name="colorControlNormal">@color/colorPrimary</item>-->
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:colorControlHighlight">@color/ripple_primary_blue</item>
+        <item name="android:statusBarColor">@color/background_color</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="colorBackgroundFloating">#1c1c26</item>
+<!--        <item name="colorBackgroundFloating">#151517</item>-->
+<!--        <item name="colorBackgroundFloating">#19191B</item>-->
+        <item name="controlBackground">@color/background_color</item>
+
+        <item name="md_background_color">#1c1c26</item>
+        <item name="md_title_color">@color/lead_text_color</item>
+        <item name="md_content_color">@color/body_text_color</item>
+        <item name="md_btn_ripple_color">@color/ripple_primary_blue</item>
+        <item name="md_negative_color">@color/button_normal_color</item>
+        <item name="md_positive_color">@color/button_normal_color</item>
+        <item name="md_icon_limit_icon_to_default_size">true</item>
+    </style>
+
+    <style name="BottomNavigationViewActive">
+        <item name="fontFamily">@font/exo_medium</item>
+    </style>
+
+    <style name="BottomNavigationViewInactive">
+        <item name="fontFamily">@font/exo_regular</item>
+    </style>
+
+    <style name="TabText" parent="android:TextAppearance.Material.Widget.TabWidget">
+        <item name="fontFamily">@font/exo_medium</item>
+        <item name="android:textSize">11sp</item>
+    </style>
+
+</resources>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color">
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/relativeLayout_top_nav_view_admin"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@drawable/bg_top_nav">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="20dp"
+                android:background="?selectableItemBackgroundBorderless"
+                tools:ignore="RelativeOverlap">
+
+                <ImageView
+                    android:id="@+id/imageView_logo"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="5dp"
+                    android:contentDescription="@string/content_desc_back_btn"
+                    android:src="@drawable/img_logo" />
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textView_brand_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@+id/imageView_logo"
+                    android:text="@string/brandName"
+                    android:textAlignment="center"
+                    android:textColor="@color/logo_color"
+                    android:textSize="20sp"
+                    app:fontFamily="@font/titillium_semibold"
+                    tools:ignore="RelativeOverlap" />
+
+            </RelativeLayout>
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/circleImageView_profile_image"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="10dp"
+                android:layout_toStartOf="@+id/imageView_settings"
+                android:background="?selectableItemBackgroundBorderless"
+                android:src="@drawable/img_forgot_password"
+                app:civ_border_color="@color/profile_image_border"
+                app:civ_border_width="1dp" />
+
+
+            <ImageView
+                android:id="@+id/imageView_settings"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="20dp"
+                android:background="?selectableItemBackgroundBorderless"
+                android:contentDescription="@string/content_desc_back_btn"
+                android:src="@drawable/ic_baseline_settings_24"
+                app:tint="@color/body_text_color" />
+
+        </RelativeLayout>
+
+    </com.google.android.material.navigation.NavigationView>
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav_view_admin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bg_bottom_nav"
+        app:itemTextAppearanceActive="@style/BottomNavigationViewActive"
+        app:itemTextAppearanceInactive="@style/BottomNavigationViewInactive"
+        app:menu="@menu/bottom_nav_menu_admin" />
+
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/bottom_nav_host_fragment_admin"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_nav_view_admin"
+        android:layout_below="@+id/relativeLayout_top_nav_view_admin"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/mobile_navigation_admin" />
+
+</RelativeLayout>
+

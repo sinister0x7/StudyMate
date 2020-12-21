@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    tools:context=".activities.OnBoardingActivity">
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager_on_boarding"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/relativeLayout_controls_container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout_controls_container"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_get_started"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="25dp"
+            android:fontFamily="@font/exo_semibold"
+            android:onClick="getStarted"
+            android:text="@string/btn_txt_get_started"
+            android:textAllCaps="false"
+            android:textColor="@color/button_text_color"
+            android:textSize="18sp"
+            app:backgroundTint="@color/button_normal_color"
+            app:cornerRadius="5dp"
+            app:elevation="16dp"
+            app:rippleColor="@color/button_pressed_color" />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="68dp"
+            android:background="@color/material_divider" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textView_skip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginBottom="25dp"
+            android:background="?selectableItemBackgroundBorderless"
+            android:onClick="skip"
+            android:padding="5dp"
+            android:text="@string/btn_txt_skip"
+            android:textAllCaps="true"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp"
+            app:drawableEndCompat="@drawable/ic_outline_last_page_24"
+            app:drawableTint="@color/colorPrimary"
+            app:fontFamily="@font/exo_semibold" />
+
+
+        <com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
+            android:id="@+id/wormDotsIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="37dp"
+            app:dotsColor="@color/colorPrimary"
+            app:dotsCornerRadius="1dp"
+            app:dotsSize="10dp"
+            app:dotsSpacing="3dp"
+            app:dotsStrokeColor="@color/colorPrimaryDark"
+            app:dotsStrokeWidth="1dp"
+            app:stiffness="150" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textView_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="25dp"
+            android:background="?selectableItemBackgroundBorderless"
+            android:onClick="next"
+            android:padding="5dp"
+            android:text="@string/btn_txt_next"
+            android:textAllCaps="true"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp"
+            app:drawableEndCompat="@drawable/ic_outline_chevron_right_24"
+            app:drawableTint="@color/colorPrimary"
+            app:fontFamily="@font/exo_semibold"
+            tools:ignore="RelativeOverlap" />
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

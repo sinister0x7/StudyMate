@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--    <color name="colorPrimary">#6200EE</color>-->
+    <!--    <color name="colorPrimaryDark">#3700B3</color>-->
+    <!--    <color name="colorAccent">#03DAC5</color>-->
+
+    <!--System Colors-->
+    <color name="colorPrimary">#0063F7</color>
+    <color name="colorPrimaryDark">#133DAE</color>
+    <color name="colorAccent">#6C63FF</color>
+<!--    <color name="colorAccent">#FF0266</color>-->
+    <!--    <color name="logo_color">#D4351F</color>-->
+
+    <!--Cadmium Red-->
+    <color name="logo_color">#EE0F1B</color>
+    <color name="lead_text_color">#1C1C26</color>
+    <color name="body_text_color">#555770</color>
+    <color name="background_color">#FFFFFF</color>
+
+
+    <!--Button Colors-->
+    <!--    <color name="button_normal_color">#0063F7</color>-->
+    <color name="button_normal_color">#0063F7</color>
+    <!--    <color name="button_normal_color">#0063f7</color>-->
+    <color name="button_hovered_color">#5B8DEF</color>
+    <color name="button_focused_color">#3E7BFA</color>
+    <!--    <color name="button_pressed_color">#004FC4</color>-->
+    <!--Egyptian Blue-->
+    <color name="button_pressed_color">#133DAE</color>
+    <color name="button_border_shadow">#606170</color>
+    <color name="button_focused_shadow">#CCDDFF</color>
+    <color name="button_text_color">#FAFAFC</color>
+
+
+    <!--Ripple Colors-->
+    <color name="ripple_grey">#2A434C54</color>
+    <color name="ripple_primary_blue">#4D0063F7</color>
+
+    <!--Input Field Colors-->
+    <color name="input_field_focused_stroke">#0063F7</color>
+    <color name="input_field_normal_stroke">#606170</color>
+
+    <!--Venetian Red-->
+    <color name="input_field_error_stroke">#C80815</color>
+    <color name="input_field_hint_color">#3E7BFA</color>
+    <color name="error_color">#C80815</color>
+
+    <color name="loading_bg">#FFFFFF</color>
+
+    <color name="snackBar">#2F3047</color>
+    <color name="snackBarText">#FAFAFA</color>
+
+    <color name="level0">#FFFFFF</color>
+
+    <color name="card">#FFFFFF</color>
+
+    <color name="button">#FFFFFF</color>
+
+    <color name="nav_menu_bar">#FFFFFF</color>
+
+    <color name="card_raised">#FFFFFF</color>
+
+    <color name="picker">#FFFFFF</color>
+
+    <color name="material_divider">#10000000</color>
+
+    <color name="modals">#FFFFFF</color>
+    <color name="color_bottom_nav_bg">#FFFFFF</color>
+    <color name="card_yellow">#FACE14</color>
+    <color name="card_pink">#f21E60</color>
+    <color name="card_purple">#8D4DE9</color>
+    <color name="card_blue">#2962FF</color>
+    <color name="card_green">#99CE66</color>
+    <color name="divider_white">#FFFFFF</color>
+    <color name="text_white">#FFFFFF</color>
+    <color name="icon_tint_white">#FFFFFF</color>
+    <color name="gradient_start_color">#CDFFFFFF</color>
+    <color name="profile_image_border">#555770</color>
+
+</resources>

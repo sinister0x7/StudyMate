@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:id="@+id/group_image_picker">
+        <item
+            android:id="@+id/pick_image"
+            android:icon="@drawable/ic_baseline_camera_alt_24"
+            android:title="@string/title_dashboard" />
+
+        <item
+            android:id="@+id/remove_image"
+            android:icon="@drawable/ic_baseline_delete_24"
+            android:title="@string/title_chats" />
+    </group>
+
+</menu>

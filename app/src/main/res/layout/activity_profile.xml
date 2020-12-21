@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    android:fitsSystemWindows="true"
+    tools:context=".activities.ProfileActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout_profile"
+        style="@style/ThemeOverlay.MaterialComponents.Dark"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:fitsSystemWindows="true">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsingToolbarLayout_profile"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:contentScrim="@color/color_bottom_nav_bg"
+            app:expandedTitleMarginBottom="20dp"
+            app:expandedTitleMarginStart="15dp"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+            app:statusBarScrim="@color/background_color">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/appCompatImageView_profile_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                android:scaleType="centerCrop"
+                app:layout_collapseMode="parallax" />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_gravity="bottom"
+                android:background="@drawable/bg_name" />
+
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar_profile"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                app:contentInsetStart="0dp"
+                app:contentInsetStartWithNavigation="0dp"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.MaterialComponents.Toolbar.Primary" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="3dp"
+                android:fontFamily="@font/titillium_semibold_upright"
+                android:text="@string/textView_title_email"
+                android:textColor="@color/colorPrimary"
+                android:textSize="14sp" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textView_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/sf_ui_display_regular"
+                android:text="@string/textView_content_email"
+                android:textColor="@color/body_text_color"
+                android:textSize="18sp" />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/material_divider" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="2dp"
+                android:fontFamily="@font/titillium_semibold_upright"
+                android:text="@string/textView_title_phone"
+                android:textColor="@color/colorPrimary"
+                android:textSize="14sp" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textView_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/sf_ui_display_regular"
+                android:text="@string/textView_content_phone"
+                android:textColor="@color/body_text_color"
+                android:textSize="18sp" />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/material_divider" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="2dp"
+                android:fontFamily="@font/titillium_semibold_upright"
+                android:text="@string/textView_title_username"
+                android:textColor="@color/colorPrimary"
+                android:textSize="14sp" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textView_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/sf_ui_display_regular"
+                android:text="@string/textView_content_username"
+                android:textColor="@color/body_text_color"
+                android:textSize="18sp" />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/material_divider" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="2dp"
+                android:fontFamily="@font/titillium_semibold_upright"
+                android:text="@string/textView_title_about"
+                android:textColor="@color/colorPrimary"
+                android:textSize="14sp" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textView_about"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/sf_ui_display_regular"
+                android:text="@string/textView_content_about"
+                android:textColor="@color/body_text_color"
+                android:textSize="18sp" />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/material_divider" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="2dp"
+                android:fontFamily="@font/titillium_semibold_upright"
+                android:text="@string/textView_title_birthday"
+                android:textColor="@color/colorPrimary"
+                android:textSize="14sp" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textView_birthday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/sf_ui_display_regular"
+                android:text="@string/textView_content_birthday"
+                android:textColor="@color/body_text_color"
+                android:textSize="18sp" />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/material_divider" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="2dp"
+                android:fontFamily="@font/titillium_semibold_upright"
+                android:text="@string/textView_title_gender"
+                android:textColor="@color/colorPrimary"
+                android:textSize="14sp" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+               android:id="@+id/textView_gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/sf_ui_display_regular"
+                android:text="@string/textView_content_gender"
+                android:textColor="@color/body_text_color"
+                android:textSize="18sp" />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/material_divider" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="2dp"
+                android:fontFamily="@font/titillium_semibold_upright"
+                android:text="@string/textView_title_college"
+                android:textColor="@color/colorPrimary"
+                android:textSize="14sp" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textView_college"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/sf_ui_display_regular"
+                android:text="@string/textView_content_college"
+                android:textColor="@color/body_text_color"
+                android:textSize="18sp" />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/material_divider" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="2dp"
+                android:fontFamily="@font/titillium_semibold_upright"
+                android:text="@string/textView_title_role"
+                android:textColor="@color/colorPrimary"
+                android:textSize="14sp" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textView_role"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/sf_ui_display_regular"
+                android:text="@string/textView_content_role"
+                android:textColor="@color/body_text_color"
+                android:textSize="18sp" />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/material_divider" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="2dp"
+                android:fontFamily="@font/titillium_semibold_upright"
+                android:text="@string/textView_title_course"
+                android:textColor="@color/colorPrimary"
+                android:textSize="14sp" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textView_course"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/sf_ui_display_regular"
+                android:text="@string/textView_content_course"
+                android:textColor="@color/body_text_color"
+                android:textSize="18sp" />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/material_divider" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="2dp"
+                android:fontFamily="@font/titillium_semibold_upright"
+                android:text="@string/textView_title_id_or_roll_no"
+                android:textColor="@color/colorPrimary"
+                android:textSize="14sp" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textView_id_or_roll_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/sf_ui_display_regular"
+                android:text="@string/textView_content_id_or_roll_no"
+                android:textColor="@color/body_text_color"
+                android:textSize="18sp" />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/material_divider" />
+
+
+            <LinearLayout
+                android:id="@+id/linearLayout_semester_or_year"
+                android:layout_width="match_parent"
+                android:visibility="gone"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="2dp"
+                    android:fontFamily="@font/titillium_semibold_upright"
+                    android:text="@string/textView_title_semester_or_year"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="14sp" />
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textView_semester_or_year"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/sf_ui_display_regular"
+                    android:text="@string/textView_content_semester_or_year"
+                    android:textColor="@color/body_text_color"
+                    android:textSize="18sp" />
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/material_divider" />
+
+            </LinearLayout>
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_logout"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/exo_semibold"
+                android:text="@string/btn_txt_logout"
+                android:textAllCaps="false"
+                android:textColor="@color/button_text_color"
+                android:textSize="18sp"
+                app:backgroundTint="@color/error_color"
+                app:cornerRadius="5dp"
+                app:elevation="16dp"
+                app:rippleColor="@color/button_pressed_color">
+
+            </com.google.android.material.button.MaterialButton>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton_edit_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:contentDescription="@string/content_desc_edit_profile_fab"
+        android:src="@drawable/ic_baseline_edit_24"
+        app:backgroundTint="@color/colorAccent"
+        app:elevation="6dp"
+        app:layout_anchor="@id/appBarLayout_profile"
+        app:layout_anchorGravity="bottom|end|right"
+        app:maxImageSize="28dp" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

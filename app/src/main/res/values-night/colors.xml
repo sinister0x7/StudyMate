@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--System Colors-->
+    <color name="colorPrimary">#0063F7</color>
+    <color name="colorPrimaryDark">#004FC4</color>
+    <color name="colorAccent">#6C63FF</color>
+<!--    <color name="colorAccent">#FF0266</color>-->
+    <!--    <color name="colorAccent">#F23B5F</color>-->
+    <color name="background_color">#000000</color>
+    <!--    <color name="background_color">#0C0C0C</color>-->
+    <color name="logo_color">#EE0F1B</color>
+    <!--    <color name="logo_color">#E4E4EB</color>-->
+    <color name="lead_text_color">#FAFAFA</color>
+    <color name="body_text_color">#8F90A6</color>
+
+
+    <!--Button Colors-->
+    <color name="button_normal_color">#0063F7</color>
+    <color name="button_hovered_color">#5B8DEF</color>
+    <color name="button_focused_color">#3E7BFA</color>
+    <color name="button_pressed_color">#133DAE</color>
+    <color name="button_border_shadow">#606170</color>
+    <color name="button_focused_shadow">#CCDDFF</color>
+    <color name="button_text_color">#FAFAFC</color>
+
+
+    <!--Ripple Colors-->
+    <color name="ripple_grey">#2A434C54</color>
+    <color name="ripple_primary_blue">#4D0063F7</color>
+
+
+    <!--Input Field Colors-->
+    <color name="input_field_focused_stroke">#0063F7</color>
+    <color name="input_field_normal_stroke">#606170</color>
+    <color name="input_field_error_stroke">#C80815</color>
+    <color name="input_field_hint_color">#3E7BFA</color>
+    <color name="error_color">#C80815</color>
+
+    <color name="loading_bg">#1C1C26</color>
+
+    <color name="snackBar">#FFFFFF</color>
+    <color name="snackBarText">#1C1C26</color>
+
+
+    <color name="level0">#28293D</color>
+
+    <color name="card">#2A2B40</color>
+
+    <color name="button">#2C2D42</color>
+
+    <color name="nav_menu_bar">#2D2E45</color>
+
+    <color name="card_raised">#2F3047</color>
+
+    <color name="picker">#30324A</color>
+
+    <color name="modals">#32334D</color>
+    <color name="material_divider">#10FFFFFF</color>
+
+    <color name="color_bottom_nav_bg">#151517</color>
+    <color name="card_yellow">#FACE14</color>
+    <color name="card_pink">#f21e60</color>
+    <color name="card_purple">#8d4de9</color>
+
+    <color name="profile_image_border">#8F90A6</color>
+
+    <color name="gradient_start_color">#CD000000</color>
+
+</resources>

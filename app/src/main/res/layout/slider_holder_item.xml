@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageView_slider"
+        android:layout_width="0dp"
+        android:layout_height="400dp"
+        android:contentDescription="@null"
+        android:padding="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/img_welcome" />
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/textView_slider_heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="168dp"
+        android:layout_marginEnd="168dp"
+        android:text="@string/heading_onBoarding_first_slide"
+        android:textColor="@color/lead_text_color"
+        android:textSize="30sp"
+        app:fontFamily="@font/titillium_semibold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView_slider" />
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/textView_slider_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="168dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="168dp"
+        android:gravity="center"
+        android:text="@string/desc_onBoarding_first_slide"
+        android:textColor="@color/body_text_color"
+        android:textSize="18sp"
+        app:fontFamily="@font/sf_ui_display_light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_slider_heading" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

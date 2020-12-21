@@ -1,0 +1,331 @@
+<resources>
+
+    <string name="app_name">StudyMate</string>
+
+    <!-- Commons -->
+    <string name="btn_txt_skip">Skip</string>
+    <string name="btn_txt_next">Next</string>
+
+    <string name="content_desc_close_btn">Close</string>
+    <string name="content_desc_back_btn">Back</string>
+    <string name="content_desc_refresh_btn">Refresh</string>
+
+    <string name="placeholder_email">Email</string>
+    <string name="error_empty_email">Please enter your email</string>
+    <string name="error_invalid_email">Invalid email</string>
+
+    <string name="placeholder_password">Password</string>
+    <string name="error_empty_password">Please enter your password</string>
+    <string name="error_invalid_password">Invalid password</string>
+
+
+    <!-- Dialogs -->
+
+    <!-- No Internet Dialog -->
+    <string name="title_dialog_no_internet">No Internet Connection</string>
+    <string name="content_dialog_no_internet">Please connect to the Internet to proceed further.</string>
+    <string name="positive_text_dialog_no_internet">Settings</string>
+    <string name="negative_text_dialog_no_internet">Cancel</string>
+
+    <!-- Link Sent Dialog -->
+    <string name="title_dialog_link_sent">Link Sent Successfully</string>
+    <string name="content_dialog_link_sent">An email containing link for resetting password has been successfully sent to you.</string>
+    <string name="positive_text_dialog_link_sent">OK</string>
+
+    <!-- Link Not Sent Dialog -->
+    <string name="title_dialog_link_not_sent">Link Not Sent</string>
+    <string name="content_dialog_link_not_sent">An error occurred. Please try again later.</string>
+    <string name="positive_text_dialog_link_not_sent">OK</string>
+
+    <!-- Link Not Sent Dialog -->
+    <string name="title_dialog_registration_failed">Registration failed</string>
+    <string name="content_dialog_registration_failed">An error occurred. Please try again later.</string>
+    <string name="positive_text_registration_failed">Cancel</string>
+
+    <!-- Email Not Registered Dialog -->
+    <string name="title_dialog_email_not_registered">Account Not Found</string>
+    <string name="content_dialog_email_not_registered">The email address you entered is not associated with any registered account.</string>
+    <string name="positive_text_dialog_email_not_registered">Go Back</string>
+    <string name="negative_text_dialog_email_not_registered">Cancel</string>
+
+    <!-- Email Already Registered Dialog -->
+    <string name="title_dialog_email_already_registered">Email already in use</string>
+    <string name="content_dialog_email_already_registered">The email address you entered is already in use.</string>
+    <string name="positive_text_dialog_email_already_registered">Go Back</string>
+    <string name="negative_text_dialog_email_already_registered">Cancel</string>
+
+    <!-- Progress Dialogs -->
+    <string name="content_dialog_verifying_credentials">Verifying credentials</string>
+
+    <string name="content_dialog_sending_password_reset_link">Sending password reset link</string>
+
+    <string name="content_dialog_retrieving_college_data">Retrieving college data</string>
+    <string name="content_dialog_listing_courses">Listing courses</string>
+    <string name="content_dialog_retrieving_session_data">Retrieving session data</string>
+    <string name="content_dialog_registering">Registering</string>
+    <string name="content_dialog_signing_in">Signing in</string>
+    <string name="content_dialog_">Setting up your account</string>
+    <string name="content_dialog_checking_email">Checking email</string>
+
+    <string name="content_dialog_please_wait">Please Wait…</string>
+
+
+    <!-- SnackBars -->
+
+    <!-- Login Failed -->
+    <string name="content_snackBar_login_failed_wrong_credentials">Login failed! Please check your credentials and try again.</string>
+    <string name="content_snackBar_login_failed">Some error occurred, Please try again later.</string>
+    <string name="content_snackBar_user_not_allowed">You are not allowed to join classes, yet.</string>
+    <string name="content_snackBar_unable_to_check_approval_status">Unable to check approval status, Please try again later.</string>
+    <string name="content_snackBar_task_failed">Some error occurred, Please try again later.</string>
+    <string name="content_snackBar_logout_failed">Some error occurred, Please try again later.</string>
+    <string name="content_snackBar_email_not_registered">The email address you entered is not associated with any registered account.</string>
+    <string name="content_snackBar_id_already_exists">The Roll No. is already registered.</string>
+    <string name="content_snackBar_username_already_exists">Username is already taken by someone.</string>
+    <string name="content_snackBar_email_already_exists">The email address is already in use by another account.</string>
+
+    <string name="txt_toast_welcome">Welcome!</string>
+
+    <!-- Splash Screen -->
+    <string name="content_desc_logo">Logo</string>
+    <string name="brandName">StudyMate</string>
+    <string name="txt_made_with">Made with</string>
+    <string name="content_desc_love">Love</string>
+    <string name="txt_in_india">in India</string>
+
+
+    <!-- On Boarding Screen -->
+    <string name="heading_onBoarding_first_slide">Welcome to StudyMate</string>
+    <string name="heading_onBoarding_second_slide">Managed Classes</string>
+    <string name="heading_onBoarding_third_slide">Progress Reports</string>
+    <string name="heading_onBoarding_fourth_slide">Organised Assignments</string>
+    <string name="heading_onBoarding_fifth_slide">Set Reminder</string>
+    <string name="heading_onBoarding_sixth_slide">Discussion Groups</string>
+    <string name="heading_onBoarding_seventh_slide">Secure</string>
+    <string name="desc_onBoarding_first_slide">One platform for all educational needs.</string>
+    <string name="desc_onBoarding_second_slide">Students can join the classes created by instructor directly in the app.</string>
+    <string name="desc_onBoarding_third_slide">Get the track of attendance record and access progress reports in one click.</string>
+    <string name="desc_onBoarding_fourth_slide">No need to waste your time in search of submitted assignments in 3rd party messenger app.</string>
+    <string name="desc_onBoarding_fifth_slide">Get notifications of tasks and classes.</string>
+    <string name="desc_onBoarding_sixth_slide">Discuss interesting topics.</string>
+    <string name="desc_onBoarding_seventh_slide">Intruder free classes and groups with assured security.</string>
+    <string name="btn_txt_get_started">Let\'s Get Started</string>
+
+
+    <!-- Login Screen -->
+    <string name="txt_sign_in_hello">Hello There!</string>
+    <string name="txt_sign_in_greeting">Nice to see you.</string>
+    <string name="btn_txt_login">Login</string>
+    <string name="checkbox_txt_remember_me">Remember Me</string>
+    <string name="link_txt_forgot_password">Forgot Password?</string>
+    <string name="txt_not_a_member">Not a member?</string>
+    <string name="link_txt_register">Register.</string>
+
+
+    <!-- SignUp Fill Personal Details Screen -->
+    <string name="title_pg_sign_up_fill_personal_details">Let\'s Get On Board</string>
+    <string name="placeholder_full_name">Full Name</string>
+    <string name="error_empty_full_name">Name can\'t be empty</string>
+    <string name="error_invalid_full_name">Invalid Name</string>
+    <string name="role_admin">Admin/HOD</string>
+    <string name="role_faculty">Faculty</string>
+    <string name="role_student">Student</string>
+    <string-array name="roles">
+        <item>@string/role_admin</item>
+        <item>@string/role_faculty</item>
+        <item>@string/role_student</item>
+    </string-array>
+    <string name="placeholder_role">Role</string>
+    <string name="error_empty_role">Please select Role</string>
+    <string name="error_invalid_role">Invalid role</string>
+    <string name="gender_male">Male</string>
+    <string name="gender_female">Female</string>
+    <string name="gender_prefer_not_to_say">Prefer not to say</string>
+    <string-array name="genders">
+        <item>@string/gender_male</item>
+        <item>@string/gender_female</item>
+        <item>@string/gender_prefer_not_to_say</item>
+    </string-array>
+    <string name="placeholder_gender">Gender</string>
+    <string name="error_empty_gender">Please specify gender</string>
+    <string name="error_invalid_gender">Invalid gender</string>
+    <string name="placeholder_username">Create Username</string>
+    <string name="error_empty_username">Username can\'t be empty</string>
+    <string name="error_invalid_username">Invalid Username</string>
+    <string name="placeholder_create_password">Create Password</string>
+    <string name="txt_already_have_an_account">Already have an account?</string>
+    <string name="link_txt_login">Login.</string>
+
+
+    <!-- SignUp Fill Educational Details Screen -->
+    <string name="title_pg_sign_up_fill_educational_details">Institutional Details</string>
+    <string name="placeholder_college_name">College Name</string>
+    <string name="error_empty_college_name">Please select your College</string>
+    <string name="error_invalid_college_name">Invalid College Name</string>
+    <string name="placeholder_course">Select Course</string>
+    <string name="error_empty_course">Please select Course</string>
+    <string name="error_invalid_course">Invalid Course</string>
+    <string name="placeholder_roll_no_or_id">Roll No.</string>
+    <string name="error_empty_roll_no_or_id">Please enter your Roll No.</string>
+    <string name="error_invalid_roll_no_or_id">Invalid Roll No.</string>
+    <string name="error_empty_about">Please enter something about you.</string>
+    <string name="error_invalid_about">About text cannot exceed 256 characters.</string>
+    <string name="error_empty_birthday">Please enter your birthday.</string>
+
+    <string name="placeholder_faculty_id">Faculty ID</string>
+    <string name="error_empty_faculty_id">Please enter your Faculty ID.</string>
+    <string name="error_invalid_faculty_id">Invalid Faculty ID.</string>
+
+
+    <string name="placeholder_sem_or_year">Sem / Year</string>
+    <string name="error_empty_sem_or_year">Please select your Sem / Year.</string>
+    <string name="error_invalid_sem_or_year">Invalid Sem / Year.</string>
+
+    <string name="btn_txt_request_for_join">Request For Joining</string>
+
+
+    <!-- SignUp Add Subjects Screen (Admin) -->
+    <string name="title_pg_sign_up_add_subjects">Add Subjects</string>
+    <string name="desc_pg_sign_up_add_subjects">Type subject name and tap on (+) icon to add subjects.</string>
+    <string name="placeholder_subject">Add Subject</string>
+    <string name="error_empty_subject">Please add subject</string>
+    <string name="error_invalid_subject">Invalid subject</string>
+
+
+    <!-- Phone Verification Screen -->
+    <string name="title_pg_phone_verification">Verify Your Number</string>
+    <string name="desc_pg_phone_verification">Please enter your Country Code and Phone Number.</string>
+    <string name="helper_txt_pg_phone_verification">We\'ll send you a Verification Code on this number.</string>
+    <string name="placeholder_phone_number">Phone Number</string>
+    <string name="error_empty_phone_number">Please enter your phone number.</string>
+    <string name="error_invalid_phone_number">Invalid phone number.</string>
+
+
+    <!-- OTP Holder Screen -->
+    <string name="title_pg_otp_holder">Verification Code</string>
+    <string name="desc_pg_otp_holder">Check your inbox and enter the verification code that we sent to you.</string>
+    <string name="btn_txt_verify">Verify</string>
+    <string name="btn_txt_resend_code">Resend Code</string>
+
+
+    <!-- Password Reset Screen -->
+    <string name="title_pg_password_reset">Forgot Password?</string>
+    <string name="desc_pg_password_reset">Please provide your registered email address and we will send you an email with a link that will allow you to reset your password.</string>
+    <string name="placeholder_registered_email">Registered Email</string>
+    <string name="btn_txt_send_code">Send Link</string>
+
+
+    <!-- Change Password Pre Login Screen -->
+    <string name="title_pg_create_new_password">Create New Password</string>
+    <string name="desc_pg_create_new_password">Please create new password and retype to confirm.</string>
+    <string name="placeholder_new_password">New Password</string>
+    <string name="placeholder_retype_new_password">Retype New Password</string>
+    <string name="btn_txt_change_password">Change Password</string>
+    <string name="title_activity_login2">LoginActivity2</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+
+    <string name="title_activity_main_activityjj">MainActivity</string>
+    <string name="title_chats">Chats</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_tab_students">Students</string>
+    <string name="title_tab_faculty">Faculty</string>
+    <string name="title_tab_pending_requests">Pending Requests</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_dashboard">MainActivity</string>
+    <string name="title_activity_main_activityxxx">MainActivity</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_nnnnn">MainActivity</string>
+    <string name="title_activity_bttm_nav">MainActivity</string>
+    <string name="content_desc_time">Time</string>
+    <string name="content_desc_view_btn">View</string>
+    <string name="btn_txt_view">View</string>
+    <string name="content_desc_classes">Classes</string>
+    <string name="greetings_default">Hello!</string>
+    <string name="name_default_student">Student</string>
+    <string name="name_default_admin">Sir</string>
+    <string name="name_default_faculty">Sir</string>
+    <string name="numbers_default">0</string>
+    <string name="content_desc_assignments">Assignments</string>
+    <string name="content_desc_notes">Notes</string>
+    <string name="card_txt_assignments_student">Assignments due</string>
+    <string name="card_txt_assignments_admin">Assignments submitted</string>
+    <string name="card_txt_assignments_faculty">Assignments submitted</string>
+    <string name="card_txt_notices_faculty">New notices</string>
+    <string name="card_txt_notices_admin">Total notices</string>
+    <string name="card_txt_notices_student">New notices</string>
+    <string name="card_txt_classes_student">Classes today</string>
+    <string name="card_txt_classes_admin">Classes today</string>
+    <string name="card_txt_classes_faculty">Classes today</string>
+    <string name="card_txt_notes_student">Total notes</string>
+    <string name="card_txt_notes_admin">Total notes</string>
+    <string name="card_txt_notes_faculty">Total notes</string>
+    <string name="card_txt_requests_admin">New requests</string>
+    <string name="content_desc_about_us">About Us</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="content_desc_requests">Requests</string>
+    <string name="content_desc_notices">Notices</string>
+    <string name="desc_pg_register">Please fill up all the details carefully and tap "Next".</string>
+
+    <string name="placeholder_birthday">Birthday</string>
+    <string name="textView_title_email">Email</string>
+    <string name="textView_content_email">Failed to load email</string>
+    <string name="textView_content_phone">Failed to load phone</string>
+    <string name="textView_content_username">Failed to load username</string>
+    <string name="textView_content_about">Failed to load about</string>
+    <string name="textView_content_college">Failed to load college</string>
+    <string name="textView_content_role">Failed to load role</string>
+    <string name="textView_content_course">Failed to load course</string>
+    <string name="textView_content_birthday">Failed to load birthday</string>
+    <string name="textView_content_gender">Failed to load gender</string>
+    <string name="textView_content_id_or_roll_no">Failed to load Id/Roll No.</string>
+    <string name="textView_content_semester_or_year">Failed to load semester/year</string>
+    <string name="textView_title_semester_or_year">Semester/Year</string>
+    <string name="textView_title_gender">Gender</string>
+
+    <string name="btn_txt_logout">Logout</string>
+    <string name="content_desc_edit_profile_fab">Edit Profile</string>
+    <string name="textView_title_phone">Phone</string>
+    <string name="textView_title_username">Username</string>
+    <string name="textView_title_college">College</string>
+    <string name="textView_title_about">About</string>
+    <string name="textView_title_role">Role</string>
+    <string name="textView_title_course">Course</string>
+    <string name="textView_title_birthday">Birthday</string>
+    <string name="textView_title_id_or_roll_no">ID/Roll No</string>
+    <string name="content_desc_menu_btn">Menu</string>
+    <string name="placeholder_about">About</string>
+    <string name="title_pg_sign_up_fill_profile_details">Setup Your Profile</string>
+    <string name="title_pg_user_approval_pending">User Approval Pending</string>
+    <string name="desc_pg_user_approval_pending">Sorry! you are not approved by admin/HOD in your college.</string>
+    <string name="desc_pg_user_approval_pending2">You will be redirected to dashboard if your college will allow you to join the classes.</string>
+    <string name="btn_txt_exit_app">Close App</string>
+    <string name="desc_pg_sign_up_fill_profile_details">Please create username and provide an optional profile picture.</string>
+    <string name="btn_txt_refresh">Refresh</string>
+    <string name="btn_txt_register">Register</string>
+    <string name="title_pg_about_us">Meet The Developers</string>
+    <string name="content_dialog_setting_up_your_account">XX</string>
+    <string name="content_dialog_logout">Signing Out</string>
+
+
+    <!-- Unused Content Descriptions -->
+    <!--    <string name="content_desc_enter_verification_code">Enter Verification Code</string>-->
+    <!--    <string name="content_desc_forgot_password">Forgot Password</string>-->
+    <!--    <string name="content_desc_verify_your_number">Verify Your Number</string>-->
+    <!--    <string name="content_desc_welcome">Welcome</string>-->
+    <!--    <string name="content_desc_managed_classes">Managed Classes</string>-->
+    <!--    <string name="content_desc_progress_reports">Progress Reports</string>-->
+    <!--    <string name="content_desc_organized_notes">Organized Notes</string>-->
+    <!--    <string name="content_desc_set_reminder">Set Reminder</string>-->
+    <!--    <string name="content_desc_discussion_groups">Discussion Groups</string>-->
+    <!--    <string name="content_desc_secure">Secure</string>-->
+    <!--    <string name="content_desc_create_new_password">Create New Password</string>-->
+
+</resources>
