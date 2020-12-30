@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -24,6 +25,7 @@ import com.netbucket.studymate.utils.SessionManager;
 import java.util.HashMap;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import es.dmoral.toasty.Toasty;
 
 public class StudentDashboardActivity extends AppCompatActivity {
     ImageView mSettingsButton;
@@ -40,6 +42,9 @@ public class StudentDashboardActivity extends AppCompatActivity {
 
     private StudentChatsFragment mStudentChatsFragment;
     private StudentNotificationsFragment mStudentNotificationsFragment;
+
+    private long mBackPressedTime;
+    private Toast mExitToast;
 
     @Override
     protected void onStart() {
@@ -64,7 +69,7 @@ public class StudentDashboardActivity extends AppCompatActivity {
 
         mFragmentContainerView = findViewById(R.id.bottom_nav_host_fragment_student);
         mBottomNavigationView = findViewById(R.id.bottom_nav_view_student);
-        mProfileImageView = findViewById(R.id.circleImageView_profile_image);
+        mProfileImageView = findViewById(R.id.imageView_profile_image);
         mSettingsButton = findViewById(R.id.imageView_settings);
         mInfoButton = findViewById(R.id.relativeLayout_logo);
         getDataFromSession();
@@ -78,13 +83,13 @@ public class StudentDashboardActivity extends AppCompatActivity {
         mStudentChatsFragment = new StudentChatsFragment();
         mStudentNotificationsFragment = new StudentNotificationsFragment();
 
-        setFragment(newInstance("name", mFullName));
+        setFragment(newInstance("fullName", mFullName));
 
         mBottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.navigation_dashboard:
 //                        mBottomNavigationView.setItemBackgroundResource();
-                    setFragment(newInstance("name", mFullName));
+                    setFragment(newInstance("fullName", mFullName));
                     return true;
 
                 case R.id.navigation_chats:
@@ -159,5 +164,18 @@ public class StudentDashboardActivity extends AppCompatActivity {
         args.putString(key, value);
         mStudentDashboardFragment.setArguments(args);
         return mStudentDashboardFragment;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (mBackPressedTime + 2000 > System.currentTimeMillis()) {
+            mExitToast.cancel();
+            super.onBackPressed();
+            return;
+        } else {
+            mExitToast = Toasty.custom(getApplicationContext(), "Press back again to exit", R.drawable.img_logo, R.color.logo_color, Toast.LENGTH_SHORT, true, true);
+            mExitToast.show();
+        }
+        mBackPressedTime = System.currentTimeMillis();
     }
 }
