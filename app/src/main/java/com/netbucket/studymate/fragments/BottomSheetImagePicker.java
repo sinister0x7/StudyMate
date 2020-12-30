@@ -21,7 +21,7 @@ public class BottomSheetImagePicker extends BottomSheetDialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.bottom_sheet_image_picker, container, false);
+        View view = inflater.inflate(R.layout.bottom_sheet_member_options, container, false);
 
         mCameraButton = view.findViewById(R.id.linearLayout_button_pick_from_gallery);
         mGalleryButton = view.findViewById(R.id.linearLayout_remove_photo);
