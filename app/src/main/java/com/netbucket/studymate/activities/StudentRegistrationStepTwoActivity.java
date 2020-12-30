@@ -37,12 +37,12 @@ import java.util.regex.Pattern;
 
 public class StudentRegistrationStepTwoActivity extends AppCompatActivity {
 
-    TextInputLayout mCollegeNameLayout;
+    TextInputLayout mInstituteLayout;
     TextInputLayout mCourseLayout;
     TextInputLayout mSemOrYearLayout;
     TextInputLayout mIdLayout;
     TextInputLayout mBirthdayLayout;
-    AutoCompleteTextView mCollegeNameField;
+    AutoCompleteTextView mInstituteField;
     AutoCompleteTextView mCourseField;
     AutoCompleteTextView mSemOrYearField;
     TextInputEditText mIdField;
@@ -57,12 +57,12 @@ public class StudentRegistrationStepTwoActivity extends AppCompatActivity {
     private String mRole;
     private String mGender;
     private String mPassword;
-    private String mCollegeName;
+    private String mInstitute;
     private String mCourse;
     private String mSemOrYear;
     private String mId;
     private String mBirthday;
-    private ArrayList<String> mCollegeList;
+    private ArrayList<String> mInstituteList;
     private ArrayList<String> mCourseList;
     private ArrayList<String> mSemOrYearList;
     private FirebaseFirestore mStore;
@@ -73,7 +73,7 @@ public class StudentRegistrationStepTwoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_students_registration_step_two);
+        setContentView(R.layout.activity_student_registration_step_two);
 
         Intent intent = getIntent();
         mFullName = intent.getStringExtra("fullName");
@@ -82,12 +82,12 @@ public class StudentRegistrationStepTwoActivity extends AppCompatActivity {
         mRole = intent.getStringExtra("role");
         mGender = intent.getStringExtra("gender");
 
-        mCollegeNameLayout = findViewById(R.id.textInputLayout_college_name);
+        mInstituteLayout = findViewById(R.id.textInputLayout_select_institute);
         mCourseLayout = findViewById(R.id.textInputLayout_select_course);
         mSemOrYearLayout = findViewById(R.id.textInputLayout_sem_or_year);
         mIdLayout = findViewById(R.id.textInputLayout_roll_no);
         mBirthdayLayout = findViewById(R.id.textInputLayout_birthday);
-        mCollegeNameField = findViewById(R.id.autoCompleteTextView_college_name);
+        mInstituteField = findViewById(R.id.autoCompleteTextView_select_institute);
         mCourseField = findViewById(R.id.autoCompleteTextView_select_course);
         mSemOrYearField = findViewById(R.id.autoCompleteTextView_sem_or_year);
         mIdField = findViewById(R.id.textInputEditText_roll_no);
@@ -99,10 +99,10 @@ public class StudentRegistrationStepTwoActivity extends AppCompatActivity {
 
         mStore = FirebaseFirestore.getInstance();
 
-        mCollegeList = new ArrayList<>();
-        fetchColleges();
-        ArrayAdapter<String> collegeNameAdapter = new ArrayAdapter<>(this, R.layout.dropdown_menu_popup_item, mCollegeList);
-        mCollegeNameField.setAdapter(collegeNameAdapter);
+        mInstituteList = new ArrayList<>();
+        fetchInstitutes();
+        ArrayAdapter<String> collegeNameAdapter = new ArrayAdapter<>(this, R.layout.dropdown_menu_popup_item, mInstituteList);
+        mInstituteField.setAdapter(collegeNameAdapter);
 
         mCourseList = new ArrayList<>();
         ArrayAdapter<String> courseAdapter = new ArrayAdapter<>(this, R.layout.dropdown_menu_popup_item, mCourseList);
@@ -128,21 +128,21 @@ public class StudentRegistrationStepTwoActivity extends AppCompatActivity {
         materialDateBuilder.setCalendarConstraints(calendarConstraintsBuilder.build());
         final MaterialDatePicker<Long> materialDatePicker = materialDateBuilder.build();
 
-        mCollegeNameField.addTextChangedListener(new ValidationWatcher(mCollegeNameField));
+        mInstituteField.addTextChangedListener(new ValidationWatcher(mInstituteField));
         mCourseField.addTextChangedListener(new ValidationWatcher(mCourseField));
         mSemOrYearField.addTextChangedListener(new ValidationWatcher(mSemOrYearField));
         mIdField.addTextChangedListener(new ValidationWatcher(mIdField));
         mBirthdayField.addTextChangedListener(new ValidationWatcher(mBirthdayField));
 
         mRefreshButton.setOnClickListener(view -> {
-            if (mCollegeList.isEmpty()) {
-                fetchColleges();
+            if (mInstituteList.isEmpty()) {
+                fetchInstitutes();
             }
         });
 
         mBackButton.setOnClickListener(view -> onBackPressed());
 
-        mCollegeNameLayout.setOnClickListener(view -> mCollegeNameField.showDropDown());
+        mInstituteLayout.setOnClickListener(view -> mInstituteField.showDropDown());
 
         mCourseLayout.setOnClickListener(view -> mCourseField.showDropDown());
 
@@ -153,7 +153,7 @@ public class StudentRegistrationStepTwoActivity extends AppCompatActivity {
         materialDatePicker.addOnPositiveButtonClickListener(selection -> mBirthdayField.setText(materialDatePicker.getHeaderText()));
 
         mNextButton.setOnClickListener(view -> {
-            if ((validCollegeName() != null) && (validCourse() != null) && (validSemOrYear() != null) && (validId() != null) && (validBirthday() != null)) {
+            if ((validInstitute() != null) && (validCourse() != null) && (validSemOrYear() != null) && (validId() != null) && (validBirthday() != null)) {
                 if (new NetworkInfoUtility(getApplicationContext()).isConnectedToInternet()) {
                     mProgressDialog = new MaterialDialog.Builder(StudentRegistrationStepTwoActivity.this)
                             .typeface(getResources().getFont(R.font.sf_ui_display_medium), getResources().getFont(R.font.sf_ui_display_regular))
@@ -171,7 +171,7 @@ public class StudentRegistrationStepTwoActivity extends AppCompatActivity {
                     intent1.putExtra("role", mRole);
                     intent1.putExtra("gender", mGender);
                     intent1.putExtra("password", mPassword);
-                    intent1.putExtra("collegeName", mCollegeName);
+                    intent1.putExtra("institute", mInstitute);
                     intent1.putExtra("course", mCourse);
                     intent1.putExtra("semOrYear", mSemOrYear);
                     intent1.putExtra("id", mId);
@@ -216,7 +216,7 @@ public class StudentRegistrationStepTwoActivity extends AppCompatActivity {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    private void fetchColleges() {
+    private void fetchInstitutes() {
         mProgressDialog = new MaterialDialog.Builder(StudentRegistrationStepTwoActivity.this)
                 .typeface(getResources().getFont(R.font.sf_ui_display_medium), getResources().getFont(R.font.sf_ui_display_regular))
                 .progress(true, 0)
@@ -231,7 +231,7 @@ public class StudentRegistrationStepTwoActivity extends AppCompatActivity {
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     for (QueryDocumentSnapshot item : queryDocumentSnapshots) {
-                        mCollegeList.add(item.getId());
+                        mInstituteList.add(item.getId());
                         Log.i("Colleges list:", item.getId());
                     }
                     mProgressDialog.dismiss();
@@ -256,7 +256,7 @@ public class StudentRegistrationStepTwoActivity extends AppCompatActivity {
 //                .build();
 //       mProgressDialog.show();
 
-        mStore.collection("/colleges/" + mCollegeName + "/courses")
+        mStore.collection("/institutes/" + mInstitute + "/courses")
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     for (QueryDocumentSnapshot item : queryDocumentSnapshots) {
@@ -281,7 +281,7 @@ public class StudentRegistrationStepTwoActivity extends AppCompatActivity {
                 .build();
         mProgressDialog.show();
 
-        mStore.collection("colleges/" + mCollegeName + "/courses/" + mCourse + "/semOrYear")
+        mStore.collection("colleges/" + mInstitute + "/courses/" + mCourse + "/semOrYear")
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     for (QueryDocumentSnapshot item : queryDocumentSnapshots) {
@@ -304,27 +304,27 @@ public class StudentRegistrationStepTwoActivity extends AppCompatActivity {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    private String validCollegeName() {
-        String collegeName = Objects.requireNonNull(mCollegeNameLayout.getEditText()).getText().toString().trim();
-        Pattern collegeNamePattern = Pattern.compile("^\\p{L}+[\\p{L}\\p{Z}\\p{P}\\p{N}]{0,80}");
-        Matcher collegeNameMatcher = collegeNamePattern.matcher(collegeName);
+    private String validInstitute() {
+        String institute = Objects.requireNonNull(mInstituteLayout.getEditText()).getText().toString().trim();
+        Pattern institutePattern = Pattern.compile("^\\p{L}+[\\p{L}\\p{Z}\\p{P}\\p{N}]{0,80}");
+        Matcher instituteMatcher = institutePattern.matcher(institute);
 
-        if (collegeName.isEmpty()) {
-            mCollegeNameLayout.setError(getString(R.string.error_empty_college_name));
-            requestFocus(mCollegeNameField);
+        if (institute.isEmpty()) {
+            mInstituteLayout.setError(getString(R.string.error_empty_college_name));
+            requestFocus(mInstituteField);
             return null;
         } else {
-            if (collegeNameMatcher.matches() && mCollegeList.contains(collegeName)) {
-                mCollegeNameLayout.setErrorEnabled(false);
-                mCollegeName = collegeName;
-                if (mCollegeList.contains(mCollegeName)) {
+            if (instituteMatcher.matches() && mInstituteList.contains(institute)) {
+                mInstituteLayout.setErrorEnabled(false);
+                mInstitute = institute;
+                if (mInstituteList.contains(mInstitute)) {
                     mCourseList.clear();
                     fetchCourses();
                 }
-                return collegeName;
+                return institute;
             } else {
-                mCollegeNameLayout.setError(getString(R.string.error_invalid_college_name));
-                requestFocus(mCollegeNameField);
+                mInstituteLayout.setError(getString(R.string.error_invalid_college_name));
+                requestFocus(mInstituteField);
                 return null;
             }
         }
@@ -435,8 +435,8 @@ public class StudentRegistrationStepTwoActivity extends AppCompatActivity {
         @RequiresApi(api = Build.VERSION_CODES.O)
         public void afterTextChanged(Editable editable) {
             switch (view.getId()) {
-                case R.id.autoCompleteTextView_college_name:
-                    validCollegeName();
+                case R.id.autoCompleteTextView_select_institute:
+                    validInstitute();
                     break;
                 case R.id.autoCompleteTextView_select_course:
                     validCourse();
