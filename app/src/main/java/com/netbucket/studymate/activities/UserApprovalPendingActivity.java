@@ -8,6 +8,7 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +25,7 @@ import java.util.HashMap;
 import java.util.Objects;
 
 import de.mateware.snacky.Snacky;
+import es.dmoral.toasty.Toasty;
 
 public class UserApprovalPendingActivity extends AppCompatActivity {
 
@@ -32,11 +34,14 @@ public class UserApprovalPendingActivity extends AppCompatActivity {
     RelativeLayout mInfoButton;
     ImageView mCloseButton;
     MaterialDialog mProgressDialog;
-    String mIsApproved = "false";
+    String mUserStatus = "disallowed";
     private FirebaseAuth mAuth;
     private FirebaseFirestore mStore;
     private FirebaseUser mUser;
+    private String mUserPath;
     private String mRole;
+    private long mBackPressedTime;
+    private Toast mExitToast;
 
     @SuppressLint("UseCompatLoadingForDrawables")
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -53,6 +58,21 @@ public class UserApprovalPendingActivity extends AppCompatActivity {
         mCloseButton = findViewById(R.id.imageView_close);
         mRefreshButton = findViewById(R.id.button_refresh);
         mLogoutButton = findViewById(R.id.button_logout);
+
+        SessionManager sessionManager = new SessionManager(UserApprovalPendingActivity.this, SessionManager.SESSION_USER_SESSION);
+        HashMap<String, String> userData = sessionManager.getUserDataFromSession();
+        mRole = userData.get(SessionManager.KEY_ROLE);
+        mUserPath = userData.get(SessionManager.KEY_USER_PATH);
+
+        if (mUser == null) {
+            sessionManager.invalidateSession();
+            mAuth.signOut();
+            Intent intent = new Intent(UserApprovalPendingActivity.this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            mProgressDialog.dismiss();
+            startActivity(intent);
+            finish();
+        }
 
         checkApprovalStatus();
 
@@ -76,9 +96,8 @@ public class UserApprovalPendingActivity extends AppCompatActivity {
                 mProgressDialog.show();
 
                 if (mUser != null) {
-                    mAuth.signOut();
-                    SessionManager sessionManager = new SessionManager(UserApprovalPendingActivity.this, SessionManager.SESSION_USER_SESSION);
                     sessionManager.invalidateSession();
+                    mAuth.signOut();
                     Intent intent = new Intent(UserApprovalPendingActivity.this, LoginActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     mProgressDialog.dismiss();
@@ -136,22 +155,18 @@ public class UserApprovalPendingActivity extends AppCompatActivity {
                     .build();
             mProgressDialog.show();
 
-            mStore.collection("users")
-                    .document(Objects.requireNonNull(mAuth.getCurrentUser()).getUid())
+
+            Log.i("Role:", Objects.requireNonNull(mRole));
+
+            mStore.document(mUserPath)
                     .get()
                     .addOnSuccessListener(documentSnapshot -> {
-                        mIsApproved = documentSnapshot.getString("isApproved");
-                        if (mIsApproved != null) {
-                            Log.i("Approval Status:", mIsApproved);
-
-                            if (mIsApproved.equals("true")) {
-                                Log.i("Approval Status:", mIsApproved);
+                        mUserStatus = documentSnapshot.getString("userStatus");
+                        if (mUserStatus != null) {
+                            Log.i("Approval Status:", mUserStatus);
+                            if (mUserStatus.equals("allowed")) {
                                 SessionManager sessionManager = new SessionManager(UserApprovalPendingActivity.this, SessionManager.SESSION_USER_SESSION);
-                                HashMap<String, String> userData = sessionManager.getUserDataFromSession();
-                                sessionManager.createUserSession(mIsApproved);
-                                mRole = userData.get(SessionManager.KEY_ROLE);
-                                Log.i("Role:", Objects.requireNonNull(mRole));
-
+                                sessionManager.createUserSession(mUserStatus);
                                 switch (mRole) {
                                     case "Student":
                                         Intent studentDashboardIntent = new Intent(UserApprovalPendingActivity.this, StudentDashboardActivity.class);
@@ -161,8 +176,8 @@ public class UserApprovalPendingActivity extends AppCompatActivity {
                                         finish();
                                         break;
 
-                                    case "Faculty":
-                                        Intent facultyDashboardIntent = new Intent(UserApprovalPendingActivity.this, FacultyDashboardActivity.class);
+                                    case "Faculty Member":
+                                        Intent facultyDashboardIntent = new Intent(UserApprovalPendingActivity.this, FacultyMemberDashboardActivity.class);
                                         mProgressDialog.dismiss();
                                         facultyDashboardIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                         startActivity(facultyDashboardIntent);
@@ -261,5 +276,17 @@ public class UserApprovalPendingActivity extends AppCompatActivity {
                     })
                     .show();
         }
+    }
+    @Override
+    public void onBackPressed() {
+        if (mBackPressedTime + 2000 > System.currentTimeMillis()) {
+            mExitToast.cancel();
+            super.onBackPressed();
+            return;
+        } else {
+            mExitToast = Toasty.custom(getApplicationContext(), "Press back again to exit", R.drawable.img_logo, R.color.logo_color, Toast.LENGTH_SHORT, true, true);
+            mExitToast.show();
+        }
+        mBackPressedTime = System.currentTimeMillis();
     }
 }
