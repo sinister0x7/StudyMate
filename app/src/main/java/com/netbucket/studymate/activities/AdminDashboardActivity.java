@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -26,6 +27,7 @@ import com.netbucket.studymate.utils.SessionManager;
 import java.util.HashMap;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import es.dmoral.toasty.Toasty;
 
 public class AdminDashboardActivity extends AppCompatActivity {
     ImageView mSettingsButton;
@@ -39,6 +41,8 @@ public class AdminDashboardActivity extends AppCompatActivity {
     String mPath;
     private AdminChatsFragment mAdminChatsFragment;
     private AdminNotificationsFragment mAdminNotificationsFragment;
+    private long mBackPressedTime;
+    private Toast mExitToast;
 
     @Override
     protected void onStart() {
@@ -63,7 +67,7 @@ public class AdminDashboardActivity extends AppCompatActivity {
 
         mFragmentContainerView = findViewById(R.id.bottom_nav_host_fragment_admin);
         mBottomNavigationView = findViewById(R.id.bottom_nav_view_admin);
-        mProfileImageView = findViewById(R.id.circleImageView_profile_image);
+        mProfileImageView = findViewById(R.id.imageView_profile_image);
         mSettingsButton = findViewById(R.id.imageView_settings);
         mInfoButton = findViewById(R.id.relativeLayout_logo);
 
@@ -84,12 +88,12 @@ public class AdminDashboardActivity extends AppCompatActivity {
         badgeDrawable2.setNumber(67);
         badgeDrawable2.setMaxCharacterCount(3);
 
-        setFragment(newInstance("name", mFullName));
+        setFragment(newInstance("fullName", mFullName));
 
         mBottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.navigation_dashboard:
-                    setFragment(newInstance("name", mFullName));
+                    setFragment(newInstance("fullName", mFullName));
                     return true;
 
                 case R.id.navigation_chats:
@@ -150,5 +154,18 @@ public class AdminDashboardActivity extends AppCompatActivity {
         args.putString(key, value);
         mAdminDashboardFragment.setArguments(args);
         return mAdminDashboardFragment;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (mBackPressedTime + 2000 > System.currentTimeMillis()) {
+            mExitToast.cancel();
+            super.onBackPressed();
+            return;
+        } else {
+            mExitToast = Toasty.custom(getApplicationContext(), "Press back again to exit", R.drawable.img_logo, R.color.logo_color, Toast.LENGTH_SHORT, true, true);
+            mExitToast.show();
+        }
+        mBackPressedTime = System.currentTimeMillis();
     }
 }
