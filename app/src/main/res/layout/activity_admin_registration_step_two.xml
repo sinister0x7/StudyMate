@@ -150,13 +150,13 @@
 
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textInputLayout_college_name"
+                    android:id="@+id/textInputLayout_select_institute"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="25dp"
                     android:layout_marginBottom="5dp"
-                    android:hint="@string/placeholder_college_name"
+                    android:hint="@string/placeholder_institute"
                     android:textColorHint="@color/body_text_color"
                     app:boxCornerRadiusBottomEnd="5dp"
                     app:boxCornerRadiusBottomStart="5dp"
@@ -173,7 +173,7 @@
                     app:startIconTint="@color/body_text_color">
 
                     <com.google.android.material.textfield.MaterialAutoCompleteTextView
-                        android:id="@+id/autoCompleteTextView_college_name"
+                        android:id="@+id/autoCompleteTextView_select_institute"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/sf_ui_display_regular"
