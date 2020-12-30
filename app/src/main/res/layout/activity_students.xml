@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    tools:context=".activities.StudentsActivity">
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigationView_students"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_top_nav">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar_students"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:background="@drawable/bg_top_nav"
+            app:contentInsetStart="0dp"
+            app:contentInsetStartWithNavigation="0dp"
+            app:navigationIcon="@drawable/ic_outline_arrow_back_24"
+            app:popupTheme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"
+            app:title="Students" />
+
+
+        <com.ferfalk.simplesearchview.SimpleSearchView
+            android:id="@+id/searchView_students"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_top_nav"
+            android:textColor="@color/lead_text_color"
+            android:visibility="visible"
+            app:backIconTint="@color/body_text_color"
+            app:cursorColor="@color/colorPrimary"
+            app:hintColor="@color/lead_text_color"
+            app:iconsTint="@color/lead_text_color"
+            app:searchBackground="@color/background_color"
+            app:type="bar"
+            app:voiceSearch="true"
+            app:voiceSearchPrompt="@string/textView_title_course" />
+
+    </com.google.android.material.navigation.NavigationView>
+
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout_students"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/navigationView_students"
+        android:background="@android:color/transparent"
+        app:tabIndicatorColor="@color/colorPrimaryDark"
+        app:tabIndicatorHeight="3dp"
+        app:tabMode="fixed"
+        app:tabPaddingBottom="15dp"
+        app:tabInlineLabel="true"
+        app:tabIndicatorGravity="bottom"
+        app:tabTextAppearance="@style/TabText"
+        app:tabIconTint="@color/body_text_color"
+        app:tabSelectedTextColor="@color/lead_text_color"
+        app:tabRippleColor="@color/ripple_primary_blue"
+        app:tabTextColor="@color/body_text_color"
+        app:tabPadding="15dp"/>
+
+
+    <View
+        android:id="@+id/border"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/tabLayout_students"
+        android:background="@color/material_divider" />
+
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager_students"
+        android:background="@color/background_color"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/border" />
+
+</RelativeLayout>
