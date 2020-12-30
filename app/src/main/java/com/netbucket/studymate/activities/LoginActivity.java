@@ -43,12 +43,12 @@ public class LoginActivity extends AppCompatActivity {
     MaterialDialog mProgressDialog;
     FirebaseFirestore mStore;
     FirebaseAuth mAuth;
-    String mUserReference;
-    String mIsApproved = "false";
+    String mUserPath;
+    String mUserStatus = "disallowed";
     private String mFullName;
     private String mRole;
     private String mGender;
-    private String mCollegeName;
+    private String mInstitute;
     private String mCourse;
     private String mId;
     private String mBirthday;
@@ -122,6 +122,8 @@ public class LoginActivity extends AppCompatActivity {
                         .build();
                 mProgressDialog.show();
 
+                SessionManager sessionManager = new SessionManager(LoginActivity.this, SessionManager.SESSION_USER_SESSION);
+
                 mAuth.signInWithEmailAndPassword(Objects.requireNonNull(validEmail()), Objects.requireNonNull(validPassword()))
                         .addOnSuccessListener(authResult -> {
                             Log.i("Login successful:", Objects.requireNonNull(mAuth.getCurrentUser()).getUid());
@@ -130,25 +132,25 @@ public class LoginActivity extends AppCompatActivity {
                                     .document(Objects.requireNonNull(mAuth.getCurrentUser()).getUid())
                                     .get()
                                     .addOnSuccessListener(documentSnapshot -> {
-                                        Log.i("Fetching reference: ", Objects.requireNonNull(mAuth.getCurrentUser()).getUid());
+                                        Log.i("Fetching user path", Objects.requireNonNull(mAuth.getCurrentUser()).getUid());
 
-                                        mIsApproved = documentSnapshot.getString("isApproved");
-                                        mUserReference = documentSnapshot.getString("reference");
-                                        mProfileImageUri = documentSnapshot.getString("profileImage");
+                                        mUserPath = documentSnapshot.getString("userPath");
+                                        mProfileImageUri = documentSnapshot.getString("profileImageUri");
 
 
-                                        Log.i("User location:", Objects.requireNonNull(mUserReference));
-                                        Log.i("Approval Status:", String.valueOf(mIsApproved));
+                                        Log.i("User path", Objects.requireNonNull(mUserPath));
+                                        Log.i("Approval Status:", String.valueOf(mUserStatus));
 
-                                        mStore.document(mUserReference)
+                                        mStore.document(mUserPath)
                                                 .get()
                                                 .addOnSuccessListener(documentSnapshot1 -> {
                                                     Log.i("Fetching details of: ", Objects.requireNonNull(mAuth.getCurrentUser()).getUid());
 
+                                                    mUserStatus = documentSnapshot1.getString("userStatus");
                                                     mFullName = documentSnapshot1.getString("fullName");
                                                     mRole = documentSnapshot1.getString("role");
                                                     mGender = documentSnapshot1.getString("gender");
-                                                    mCollegeName = documentSnapshot1.getString("collegeName");
+                                                    mInstitute = documentSnapshot1.getString("institute");
                                                     mCourse = documentSnapshot1.getString("course");
                                                     mId = documentSnapshot1.getString("id");
                                                     mBirthday = documentSnapshot1.getString("birthday");
@@ -156,10 +158,9 @@ public class LoginActivity extends AppCompatActivity {
                                                     mUsername = documentSnapshot1.getString("username");
                                                     mAbout = documentSnapshot1.getString("about");
                                                     mSemOrYear = documentSnapshot1.getString("semOrYear");
-                                                    SessionManager sessionManager = new SessionManager(LoginActivity.this, SessionManager.SESSION_USER_SESSION);
-                                                    sessionManager.createUserSession(mAuth.getCurrentUser().getUid(), mUserReference, mIsApproved, mFullName, validEmail(), mRole, mGender, validPassword(), mCollegeName, mCourse, mId, mBirthday, mPhoneNumber, mUsername, mAbout, mSemOrYear, mProfileImageUri);
+                                                    sessionManager.createUserSession(mAuth.getCurrentUser().getUid(), mUserPath, mUserStatus, mFullName, validEmail(), mRole, mGender, validPassword(), mInstitute, mCourse, mId, mBirthday, mPhoneNumber, mUsername, mAbout, mSemOrYear, mProfileImageUri);
 
-                                                    if (mIsApproved.equals("true")) {
+                                                    if (mUserStatus.equals("allowed")) {
                                                         switch (mRole) {
                                                             case "Student":
                                                                 Intent studentDashboardIntent = new Intent(LoginActivity.this, StudentDashboardActivity.class);
@@ -169,8 +170,8 @@ public class LoginActivity extends AppCompatActivity {
                                                                 finish();
                                                                 break;
 
-                                                            case "Faculty":
-                                                                Intent facultyDashboardIntent = new Intent(LoginActivity.this, FacultyDashboardActivity.class);
+                                                            case "Faculty Member":
+                                                                Intent facultyDashboardIntent = new Intent(LoginActivity.this, FacultyMemberDashboardActivity.class);
                                                                 mProgressDialog.dismiss();
                                                                 facultyDashboardIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                                                 startActivity(facultyDashboardIntent);
@@ -195,10 +196,13 @@ public class LoginActivity extends AppCompatActivity {
                                                         startActivity(intent);
                                                         finish();
                                                     }
-
                                                 })
                                                 .addOnFailureListener(e -> {
+
                                                     Log.e("Details query failed:", Objects.requireNonNull(e.getMessage()));
+
+                                                    mAuth.signOut();
+                                                    sessionManager.invalidateSession();
 
                                                     mProgressDialog.dismiss();
 
@@ -216,7 +220,11 @@ public class LoginActivity extends AppCompatActivity {
                                                 });
                                     })
                                     .addOnFailureListener(e -> {
+
                                         Log.e("Reference query failed:", Objects.requireNonNull(e.getMessage()));
+
+                                        mAuth.signOut();
+                                        sessionManager.invalidateSession();
 
                                         mProgressDialog.dismiss();
 
