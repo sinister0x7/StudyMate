@@ -5,8 +5,9 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
 
     <application
@@ -16,8 +17,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
+        <activity android:name=".activities.StudentNoticesActivity"></activity>
+        <activity android:name=".activities.FacultyMemberNoticesActivity" />
+        <activity android:name=".activities.StudentNotesActivity" />
+        <activity android:name=".activities.FacultyMemberNotesActivity" />
+        <activity android:name=".activities.AdminAssignmentsActivity" />
+        <activity android:name=".activities.AdminNotesActivity" />
+        <activity android:name=".activities.AdminNoticesActivity" />
+        <activity android:name=".activities.ViewUserProfileActivity" />
+        <activity android:name=".activities.FacultyMembersActivity" />
         <activity android:name=".activities.UserApprovalPendingActivity" />
-        <activity android:name=".activities.FacultyRegistrationStepThreeActivity" />
+        <activity android:name=".activities.FacultyMemberRegistrationStepThreeActivity" />
         <activity android:name=".activities.StudentRegistrationStepThreeActivity" />
         <activity android:name=".activities.AdminRegistrationStepThreeActivity" />
         <activity android:name=".activities.SplashScreenActivity">
@@ -28,24 +38,29 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.StudentDashboardActivity" />
-        <activity android:name=".activities.FacultyDashboardActivity" />
-        <activity android:name=".activities.AdminDashboardActivity" />
+        <activity
+            android:name=".activities.FacultyMemberDashboardActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".activities.AdminDashboardActivity"
+            android:launchMode="singleTop" />
         <activity
             android:name=".activities.OnBoardingActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait" />
         <activity android:name=".activities.ProfileActivity" />
-        <activity android:name=".activities.MembersActivity" />
+        <activity android:name=".activities.StudentsActivity" />
         <activity android:name=".activities.InfoActivity" />
         <activity android:name=".activities.SettingsActivity" />
-        <activity android:name=".activities.FacultyRegistrationStepTwoActivity" />
+        <activity android:name=".activities.FacultyMemberRegistrationStepTwoActivity" />
         <activity android:name=".activities.AdminRegistrationStepTwoActivity" />
         <activity android:name=".activities.PasswordResetActivity" />
         <activity android:name=".activities.StudentRegistrationStepTwoActivity" />
         <activity android:name=".activities.CommonRegistrationStepOneActivity" />
         <activity android:name=".activities.LoginActivity" />
-        <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
-            android:theme="@style/Base.Theme.AppCompat"/> <!-- optional (needed if default theme has no action bar) -->
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat" />
     </application>
 
 </manifest>
