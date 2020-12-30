@@ -17,30 +17,30 @@ import com.netbucket.studymate.activities.LoginActivity;
 public class StudentDashboardFragment extends Fragment {
 
     RelativeLayout mButtonViewClasses;
-    String name;
-    TextView mName;
+    String mFullName;
+    TextView mFullNameView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            name = getArguments().getString("name");
+            mFullName = getArguments().getString("fullName");
         }
 
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.fragment_student_dashboard, container, false);
-        mName = root.findViewById(R.id.textView_name);
-        mName.setText(name);
-        mButtonViewClasses = root.findViewById(R.id.button_view_classes);
+        View view = inflater.inflate(R.layout.fragment_student_dashboard, container, false);
+        mFullNameView = view.findViewById(R.id.textView_full_name);
+        mFullNameView.setText(mFullName);
+        mButtonViewClasses = view.findViewById(R.id.button_view_classes);
 
 
         mButtonViewClasses.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), LoginActivity.class);
             startActivity(intent);
         });
-        return root;
+        return view;
     }
 }
