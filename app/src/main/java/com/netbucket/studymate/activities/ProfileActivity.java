@@ -42,7 +42,7 @@ public class ProfileActivity extends AppCompatActivity {
     String mAbout;
     String mBirthday;
     String mGender;
-    String mCollege;
+    String mInstitute;
     String mRole;
     String mCourse;
     String mIdOrRollNo;
@@ -54,7 +54,7 @@ public class ProfileActivity extends AppCompatActivity {
     TextView mAboutView;
     TextView mBirthdayView;
     TextView mGenderView;
-    TextView mCollegeView;
+    TextView mInstituteView;
     TextView mRoleView;
     TextView mCourseView;
     TextView mIdOrRollNoView;
@@ -74,7 +74,7 @@ public class ProfileActivity extends AppCompatActivity {
         mUser = mAuth.getCurrentUser();
 
         mToolbar = findViewById(R.id.toolbar_profile);
-        mProfileImage = findViewById(R.id.appCompatImageView_profile_image);
+        mProfileImage = findViewById(R.id.imageView_profile_image);
         mSemOrYearLayout = findViewById(R.id.linearLayout_semester_or_year);
         mEditButton = findViewById(R.id.floatingActionButton_edit_profile);
         mEmailView = findViewById(R.id.textView_email);
@@ -83,7 +83,7 @@ public class ProfileActivity extends AppCompatActivity {
         mAboutView = findViewById(R.id.textView_about);
         mBirthdayView = findViewById(R.id.textView_birthday);
         mGenderView = findViewById(R.id.textView_gender);
-        mCollegeView = findViewById(R.id.textView_college);
+        mInstituteView = findViewById(R.id.textView_institute);
         mRoleView = findViewById(R.id.textView_role);
         mCourseView = findViewById(R.id.textView_course);
         mIdOrRollNoView = findViewById(R.id.textView_id_or_roll_no);
@@ -100,7 +100,7 @@ public class ProfileActivity extends AppCompatActivity {
         mGender = userData.get(SessionManager.KEY_GENDER);
         mAbout = userData.get(SessionManager.KEY_ABOUT);
         mRole = userData.get(SessionManager.KEY_ROLE);
-        mCollege = userData.get(SessionManager.KEY_COLLEGE_NAME);
+        mInstitute = userData.get(SessionManager.KEY_INSTITUTE);
         mCourse = userData.get(SessionManager.KEY_COURSE);
         mIdOrRollNo = userData.get(SessionManager.KEY_ID);
         mSemOrYear = userData.get(SessionManager.KEY_SEM_OR_YEAR);
@@ -128,7 +128,7 @@ public class ProfileActivity extends AppCompatActivity {
         mGenderView.setText(mGender);
         mAboutView.setText(mAbout);
         mRoleView.setText(mRole);
-        mCollegeView.setText(mCollege);
+        mInstituteView.setText(mInstitute);
         mCourseView.setText(mCourse);
         mIdOrRollNoView.setText(mIdOrRollNo);
         mSemOrYearView.setText(mSemOrYear);
