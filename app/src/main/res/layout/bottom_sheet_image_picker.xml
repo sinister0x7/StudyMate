@@ -24,8 +24,9 @@
         android:background="@color/material_divider" />
 
 
+
     <LinearLayout
-        android:id="@+id/linearLayout_button_pick_from_gallery"
+        android:id="@+id/linearLayout_button_take_a_photo"
         android:layout_width="match_parent"
         android:background="?selectableItemBackground"
         android:layout_height="wrap_content"
@@ -44,7 +45,35 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:fontFamily="@font/sf_ui_display_regular"
-            android:text="Pick photo gallery"
+            android:text="Take a photo"
+            android:textColor="@color/body_text_color"
+            android:textSize="16sp" />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout_button_pick_from_gallery"
+        android:layout_width="match_parent"
+        android:background="?selectableItemBackground"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:tint="@color/body_text_color"
+            android:src="@drawable/ic_baseline_photo_library_24" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/sf_ui_display_regular"
+            android:text="Select from gallary"
             android:textColor="@color/body_text_color"
             android:textSize="16sp" />
 
@@ -63,7 +92,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_delete_24"
+            android:src="@drawable/ic_baseline_remove_circle_24"
             app:tint="@color/body_text_color" />
 
 
@@ -72,7 +101,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:fontFamily="@font/sf_ui_display_regular"
-            android:text="Remove photo"
+            android:text="Remove current photo"
             android:textColor="@color/body_text_color"
             android:textSize="16sp" />
 
