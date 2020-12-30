@@ -5,16 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_color"
-    tools:context=".activities.MembersActivity">
+    tools:context=".activities.FacultyMembersActivity">
 
     <com.google.android.material.navigation.NavigationView
-        android:id="@+id/navigationView"
+        android:id="@+id/navigationView_faculty_members"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_top_nav">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
+            android:id="@+id/toolbar_faculty_members"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
             android:background="@drawable/bg_top_nav"
@@ -22,11 +22,11 @@
             app:contentInsetStartWithNavigation="0dp"
             app:navigationIcon="@drawable/ic_outline_arrow_back_24"
             app:popupTheme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"
-            app:title="All Members" />
+            app:title="Faculty Members" />
 
 
         <com.ferfalk.simplesearchview.SimpleSearchView
-            android:id="@+id/searchView"
+            android:id="@+id/searchView_faculty_members"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/bg_top_nav"
@@ -45,29 +45,36 @@
 
 
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabLayout"
+        android:id="@+id/tabLayout_faculty_members"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/navigationView"
+        android:layout_below="@+id/navigationView_faculty_members"
         android:background="@android:color/transparent"
         app:tabIndicatorColor="@color/colorPrimaryDark"
         app:tabIndicatorHeight="3dp"
         app:tabMode="fixed"
-        app:tabPaddingBottom="8dp"
-        app:tabPaddingTop="15dp"
-        app:tabTextAppearance="@style/TabText" />
+        app:tabTextAppearance="@style/TabText"
+        app:tabPaddingBottom="15dp"
+        app:tabIndicatorGravity="bottom"
+        app:tabInlineLabel="true"
+        app:tabIconTint="@color/body_text_color"
+        app:tabSelectedTextColor="@color/lead_text_color"
+        app:tabRippleColor="@color/ripple_primary_blue"
+        app:tabTextColor="@color/body_text_color"
+        app:tabPadding="15dp" />
 
 
     <View
         android:id="@+id/border"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_below="@id/tabLayout"
+        android:layout_below="@id/tabLayout_faculty_members"
         android:background="@color/material_divider" />
 
 
     <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewPager_members"
+        android:id="@+id/viewPager_faculty_members"
+        android:background="@color/background_color"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/border" />

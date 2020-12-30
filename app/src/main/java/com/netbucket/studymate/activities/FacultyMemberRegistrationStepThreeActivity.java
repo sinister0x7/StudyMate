@@ -43,7 +43,7 @@ import java.util.regex.Pattern;
 import de.hdodenhof.circleimageview.CircleImageView;
 import de.mateware.snacky.Snacky;
 
-public class FacultyRegistrationStepThreeActivity extends AppCompatActivity {
+public class FacultyMemberRegistrationStepThreeActivity extends AppCompatActivity {
 
     final String mSemOrYear = "NA";
     CircleImageView mProfileImage;
@@ -55,8 +55,9 @@ public class FacultyRegistrationStepThreeActivity extends AppCompatActivity {
     Button mRegisterButton;
     TextView mLoginActivityLink;
     MaterialDialog mProgressDialog;
-    String mUserReference;
-    String mIsApproved;
+    String mUserPath;
+    String mUserStatus;
+    String mProfileEditAccess = "revoked";
     FloatingActionButton mCameraFab;
     private FirebaseAuth mAuth;
     private FirebaseFirestore mStore;
@@ -66,7 +67,7 @@ public class FacultyRegistrationStepThreeActivity extends AppCompatActivity {
     private String mRole;
     private String mGender;
     private String mPassword;
-    private String mCollegeName;
+    private String mInstitute;
     private String mCourse;
     private String mId;
     private String mBirthday;
@@ -96,7 +97,7 @@ public class FacultyRegistrationStepThreeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_faculty_registration_step_three);
+        setContentView(R.layout.activity_faculty_member_registration_step_three);
 
         Intent intent = getIntent();
         mFullName = intent.getStringExtra("fullName");
@@ -104,13 +105,13 @@ public class FacultyRegistrationStepThreeActivity extends AppCompatActivity {
         mRole = intent.getStringExtra("role");
         mGender = intent.getStringExtra("gender");
         mPassword = intent.getStringExtra("password");
-        mCollegeName = intent.getStringExtra("collegeName");
+        mInstitute = intent.getStringExtra("institute");
         mCourse = intent.getStringExtra("course");
         mId = intent.getStringExtra("id");
         mBirthday = intent.getStringExtra("birthday");
         mPhoneNumber = intent.getStringExtra("phoneNumber");
 
-        mProfileImage = findViewById(R.id.circleImageView_profile_image);
+        mProfileImage = findViewById(R.id.imageView_profile_image);
         mUsernameLayout = findViewById(R.id.textInputLayout_username);
         mAboutLayout = findViewById(R.id.textInputLayout_about);
         mUsernameField = findViewById(R.id.textInputEditText_username);
@@ -121,7 +122,7 @@ public class FacultyRegistrationStepThreeActivity extends AppCompatActivity {
         mCameraFab = findViewById(R.id.floatingActionButton_camera);
 
         mAboutField.setText("Hey There! I am using StudyMate.");
-        mIsApproved = "false";
+        mUserStatus = "disallowed";
 
         mUsernameField.addTextChangedListener(new ValidationWatcher(mUsernameField));
         mAboutField.addTextChangedListener(new ValidationWatcher(mAboutField));
@@ -133,10 +134,10 @@ public class FacultyRegistrationStepThreeActivity extends AppCompatActivity {
 
         mBackButton.setOnClickListener(view -> onBackPressed());
 
-        mCameraFab.setOnClickListener(v -> CropImage.activity()
+        mCameraFab.setOnClickListener(view -> CropImage.activity()
                 .setGuidelines(CropImageView.Guidelines.ON)
                 .setAspectRatio(1, 1)
-                .start(FacultyRegistrationStepThreeActivity.this));
+                .start(FacultyMemberRegistrationStepThreeActivity.this));
 
         mRegisterButton.setOnClickListener(view -> {
             if ((validUsername() != null) && (validAbout() != null)) {
@@ -145,7 +146,7 @@ public class FacultyRegistrationStepThreeActivity extends AppCompatActivity {
         });
 
         mLoginActivityLink.setOnClickListener(view -> {
-            Intent intent1 = new Intent(FacultyRegistrationStepThreeActivity.this, LoginActivity.class);
+            Intent intent1 = new Intent(FacultyMemberRegistrationStepThreeActivity.this, LoginActivity.class);
             intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent1);
             finish();
@@ -156,7 +157,7 @@ public class FacultyRegistrationStepThreeActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void registerFaculty() {
         if (new NetworkInfoUtility(getApplicationContext()).isConnectedToInternet()) {
-            mProgressDialog = new MaterialDialog.Builder(FacultyRegistrationStepThreeActivity.this)
+            mProgressDialog = new MaterialDialog.Builder(FacultyMemberRegistrationStepThreeActivity.this)
                     .typeface(getResources().getFont(R.font.sf_ui_display_medium), getResources().getFont(R.font.sf_ui_display_regular))
                     .progress(true, 0)
                     .canceledOnTouchOutside(false)
@@ -176,38 +177,40 @@ public class FacultyRegistrationStepThreeActivity extends AppCompatActivity {
                                     Log.d("Profile image URI:", String.valueOf(uri));
                                     mProfileImageUri = uri;
 
-                                    Map<String, String> userData = new HashMap<>();
-                                    mUserReference = "/colleges/" + mCollegeName + "/courses/" + mCourse + "/faculty/" + Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
-                                    userData.put("reference", mUserReference);
-                                    userData.put("isApproved", mIsApproved);
-                                    userData.put("username", mUsername);
-                                    userData.put("profileImage", String.valueOf(mProfileImageUri));
+                                    Map<String, String> rootData = new HashMap<>();
+                                    mUserPath = "/institutes/" + mInstitute + "/courses/" + mCourse + "/facultyMembers/" + Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
+                                    rootData.put("userPath", mUserPath);
+                                    rootData.put("userStatus", mUserStatus);
+                                    rootData.put("username", mUsername);
+                                    rootData.put("profileImageUri", String.valueOf(mProfileImageUri));
 
                                     mStore.collection(("/users/"))
                                             .document(Objects.requireNonNull(mAuth.getCurrentUser()).getUid())
-                                            .set(userData)
+                                            .set(rootData)
                                             .addOnSuccessListener(aVoid -> {
-                                                Log.i("Reference created:", mUserReference);
+                                                Log.i("Reference created:", mUserPath);
 
-                                                Map<String, String> userData1 = new HashMap<>();
-                                                userData1.put("fullName", mFullName);
-                                                userData1.put("email", mEmail);
-                                                userData1.put("role", mRole);
-                                                userData1.put("gender", mGender);
-                                                userData1.put("password", mPassword);
-                                                userData1.put("collegeName", mCollegeName);
-                                                userData1.put("course", mCourse);
-                                                userData1.put("id", mId);
-                                                userData1.put("birthday", mBirthday);
-                                                userData1.put("phoneNumber", mPhoneNumber);
-                                                userData1.put("username", mUsername);
-                                                userData1.put("about", mAbout);
-                                                userData1.put("isApproved", mIsApproved);
-                                                userData1.put("semOrYear", mSemOrYear);
+                                                Map<String, String> referenceData = new HashMap<>();
+                                                referenceData.put("fullName", mFullName);
+                                                referenceData.put("email", mEmail);
+                                                referenceData.put("role", mRole);
+                                                referenceData.put("gender", mGender);
+                                                referenceData.put("password", mPassword);
+                                                referenceData.put("institute", mInstitute);
+                                                referenceData.put("course", mCourse);
+                                                referenceData.put("id", mId);
+                                                referenceData.put("birthday", mBirthday);
+                                                referenceData.put("phoneNumber", mPhoneNumber);
+                                                referenceData.put("username", mUsername);
+                                                referenceData.put("about", mAbout);
+                                                referenceData.put("semOrYear", mSemOrYear);
+                                                referenceData.put("userStatus", mUserStatus);
+                                                referenceData.put("profileEditAccess", mProfileEditAccess);
+                                                referenceData.put("profileImageUri", String.valueOf(mProfileImageUri));
 
-                                                mStore.collection("/colleges/" + mCollegeName + "/courses/" + mCourse + "/faculty/")
+                                                mStore.collection("/institutes/" + mInstitute + "/courses/" + mCourse + "/facultyMembers/")
                                                         .document(Objects.requireNonNull(mAuth.getCurrentUser()).getUid())
-                                                        .set(userData1)
+                                                        .set(referenceData)
                                                         .addOnSuccessListener(aVoid1 -> {
                                                             Log.i("Data stored:", Objects.requireNonNull(mAuth.getCurrentUser()).getUid());
 
@@ -215,8 +218,8 @@ public class FacultyRegistrationStepThreeActivity extends AppCompatActivity {
                                                                     .addOnSuccessListener(authResult1 -> {
                                                                         Log.i("Signed in:", Objects.requireNonNull(mAuth.getCurrentUser()).getUid());
 
-                                                                        SessionManager sessionManager = new SessionManager(FacultyRegistrationStepThreeActivity.this, SessionManager.SESSION_USER_SESSION);
-                                                                        sessionManager.createUserSession(mAuth.getCurrentUser().getUid(), mUserReference, mIsApproved, mFullName, mEmail, mRole, mGender, mPassword, mCollegeName, mCourse, mId, mBirthday, mPhoneNumber, mUsername, mAbout, mSemOrYear, String.valueOf(mProfileImageUri));
+                                                                        SessionManager sessionManager = new SessionManager(FacultyMemberRegistrationStepThreeActivity.this, SessionManager.SESSION_USER_SESSION);
+                                                                        sessionManager.createUserSession(mAuth.getCurrentUser().getUid(), mUserPath, mUserStatus, mFullName, mEmail, mRole, mGender, mPassword, mInstitute, mCourse, mId, mBirthday, mPhoneNumber, mUsername, mAbout, mSemOrYear, String.valueOf(mProfileImageUri));
                                                                         Intent intent = new Intent(getApplicationContext(), UserApprovalPendingActivity.class);
                                                                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                                                         mProgressDialog.dismiss();
@@ -229,7 +232,7 @@ public class FacultyRegistrationStepThreeActivity extends AppCompatActivity {
                                                                         mProgressDialog.dismiss();
 
                                                                         Snacky.builder()
-                                                                                .setActivity(FacultyRegistrationStepThreeActivity.this)
+                                                                                .setActivity(FacultyMemberRegistrationStepThreeActivity.this)
                                                                                 .setBackgroundColor(getResources().getColor(R.color.snackBar, getTheme()))
                                                                                 .setText(R.string.content_snackBar_login_failed)
                                                                                 .setTextColor(getResources().getColor(R.color.snackBarText, getTheme()))
@@ -242,7 +245,7 @@ public class FacultyRegistrationStepThreeActivity extends AppCompatActivity {
 
                                                                         if (!new NetworkInfoUtility(getApplicationContext()).isConnectedToInternet()) {
                                                                             mProgressDialog.dismiss();
-                                                                            new MaterialDialog.Builder(FacultyRegistrationStepThreeActivity.this)
+                                                                            new MaterialDialog.Builder(FacultyMemberRegistrationStepThreeActivity.this)
                                                                                     .typeface(getResources().getFont(R.font.sf_ui_display_medium), getResources().getFont(R.font.sf_ui_display_regular))
                                                                                     .title(R.string.title_dialog_no_internet)
                                                                                     .content(R.string.content_dialog_no_internet)
@@ -267,7 +270,7 @@ public class FacultyRegistrationStepThreeActivity extends AppCompatActivity {
                                                             mProgressDialog.dismiss();
 
                                                             Snacky.builder()
-                                                                    .setActivity(FacultyRegistrationStepThreeActivity.this)
+                                                                    .setActivity(FacultyMemberRegistrationStepThreeActivity.this)
                                                                     .setBackgroundColor(getResources().getColor(R.color.snackBar, getTheme()))
                                                                     .setText(R.string.content_snackBar_task_failed)
                                                                     .setTextColor(getResources().getColor(R.color.snackBarText, getTheme()))
@@ -280,7 +283,7 @@ public class FacultyRegistrationStepThreeActivity extends AppCompatActivity {
 
                                                             if (!new NetworkInfoUtility(getApplicationContext()).isConnectedToInternet()) {
                                                                 mProgressDialog.dismiss();
-                                                                new MaterialDialog.Builder(FacultyRegistrationStepThreeActivity.this)
+                                                                new MaterialDialog.Builder(FacultyMemberRegistrationStepThreeActivity.this)
                                                                         .typeface(getResources().getFont(R.font.sf_ui_display_medium), getResources().getFont(R.font.sf_ui_display_regular))
                                                                         .title(R.string.title_dialog_no_internet)
                                                                         .content(R.string.content_dialog_no_internet)
@@ -305,7 +308,7 @@ public class FacultyRegistrationStepThreeActivity extends AppCompatActivity {
                                                 mProgressDialog.dismiss();
 
                                                 Snacky.builder()
-                                                        .setActivity(FacultyRegistrationStepThreeActivity.this)
+                                                        .setActivity(FacultyMemberRegistrationStepThreeActivity.this)
                                                         .setBackgroundColor(getResources().getColor(R.color.snackBar, getTheme()))
                                                         .setText(R.string.content_snackBar_task_failed)
                                                         .setTextColor(getResources().getColor(R.color.snackBarText, getTheme()))
@@ -318,7 +321,7 @@ public class FacultyRegistrationStepThreeActivity extends AppCompatActivity {
 
                                                 if (!new NetworkInfoUtility(getApplicationContext()).isConnectedToInternet()) {
                                                     mProgressDialog.dismiss();
-                                                    new MaterialDialog.Builder(FacultyRegistrationStepThreeActivity.this)
+                                                    new MaterialDialog.Builder(FacultyMemberRegistrationStepThreeActivity.this)
                                                             .typeface(getResources().getFont(R.font.sf_ui_display_medium), getResources().getFont(R.font.sf_ui_display_regular))
                                                             .title(R.string.title_dialog_no_internet)
                                                             .content(R.string.content_dialog_no_internet)
@@ -344,7 +347,7 @@ public class FacultyRegistrationStepThreeActivity extends AppCompatActivity {
 
                         if (e instanceof FirebaseAuthUserCollisionException) {
                             mProgressDialog.dismiss();
-                            new MaterialDialog.Builder(FacultyRegistrationStepThreeActivity.this)
+                            new MaterialDialog.Builder(FacultyMemberRegistrationStepThreeActivity.this)
                                     .typeface(getResources().getFont(R.font.sf_ui_display_medium), getResources().getFont(R.font.sf_ui_display_regular))
                                     .title(R.string.title_dialog_email_already_registered)
                                     .content(R.string.content_dialog_email_already_registered)
@@ -354,13 +357,13 @@ public class FacultyRegistrationStepThreeActivity extends AppCompatActivity {
                                     .canceledOnTouchOutside(false)
                                     .cancelable(false)
                                     .onPositive((dialog, which) -> {
-                                        Intent intent = new Intent(FacultyRegistrationStepThreeActivity.this, CommonRegistrationStepOneActivity.class);
+                                        Intent intent = new Intent(FacultyMemberRegistrationStepThreeActivity.this, CommonRegistrationStepOneActivity.class);
                                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                         startActivity(intent);
                                         finish();
                                     })
                                     .onNegative((dialog, which) -> {
-                                        Intent intent = new Intent(FacultyRegistrationStepThreeActivity.this, LoginActivity.class);
+                                        Intent intent = new Intent(FacultyMemberRegistrationStepThreeActivity.this, LoginActivity.class);
                                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                         startActivity(intent);
                                         finish();
@@ -370,7 +373,7 @@ public class FacultyRegistrationStepThreeActivity extends AppCompatActivity {
                             mProgressDialog.dismiss();
 
                             Snacky.builder()
-                                    .setActivity(FacultyRegistrationStepThreeActivity.this)
+                                    .setActivity(FacultyMemberRegistrationStepThreeActivity.this)
                                     .setBackgroundColor(getResources().getColor(R.color.snackBar, getTheme()))
                                     .setText(R.string.content_snackBar_task_failed)
                                     .setTextColor(getResources().getColor(R.color.snackBarText, getTheme()))
@@ -383,7 +386,7 @@ public class FacultyRegistrationStepThreeActivity extends AppCompatActivity {
                         }
                         if (!new NetworkInfoUtility(getApplicationContext()).isConnectedToInternet()) {
                             mProgressDialog.dismiss();
-                            new MaterialDialog.Builder(FacultyRegistrationStepThreeActivity.this)
+                            new MaterialDialog.Builder(FacultyMemberRegistrationStepThreeActivity.this)
                                     .typeface(getResources().getFont(R.font.sf_ui_display_medium), getResources().getFont(R.font.sf_ui_display_regular))
                                     .title(R.string.title_dialog_no_internet)
                                     .content(R.string.content_dialog_no_internet)
@@ -402,7 +405,7 @@ public class FacultyRegistrationStepThreeActivity extends AppCompatActivity {
                         }
                     });
         } else {
-            new MaterialDialog.Builder(FacultyRegistrationStepThreeActivity.this)
+            new MaterialDialog.Builder(FacultyMemberRegistrationStepThreeActivity.this)
                     .typeface(getResources().getFont(R.font.sf_ui_display_medium), getResources().getFont(R.font.sf_ui_display_regular))
                     .title(R.string.title_dialog_no_internet)
                     .content(R.string.content_dialog_no_internet)
@@ -424,7 +427,7 @@ public class FacultyRegistrationStepThreeActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent = new Intent(FacultyRegistrationStepThreeActivity.this, FacultyRegistrationStepTwoActivity.class);
+        Intent intent = new Intent(FacultyMemberRegistrationStepThreeActivity.this, FacultyMemberRegistrationStepTwoActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         finish();

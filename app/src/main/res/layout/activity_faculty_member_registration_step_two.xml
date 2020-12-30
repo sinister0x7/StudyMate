@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/background_color"
     android:orientation="vertical"
-    tools:context=".activities.StudentRegistrationStepTwoActivity">
+    tools:context=".activities.FacultyMemberRegistrationStepTwoActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -25,11 +25,11 @@
         <RelativeLayout
             android:id="@+id/relativeLayout_logo"
             android:layout_width="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="25dp"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/imageView_back"
+            android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
+            android:layout_marginStart="25dp"
+            android:layout_toEndOf="@+id/imageView_back"
             android:background="?selectableItemBackgroundBorderless"
             tools:ignore="RelativeOverlap">
 
@@ -58,6 +58,7 @@
 
         </RelativeLayout>
 
+
         <ImageView
             android:id="@+id/imageView_back"
             android:layout_width="24dp"
@@ -81,7 +82,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:background="?selectableItemBackgroundBorderless"
-            android:contentDescription="@string/content_desc_back_btn"
+            android:contentDescription="@string/content_desc_refresh_btn"
             android:src="@drawable/ic_baseline_refresh_24"
             app:tint="@color/body_text_color" />
 
@@ -126,9 +127,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="25dp"
-                    android:layout_marginBottom="5dp"
-                    android:text="@string/title_pg_sign_up_fill_personal_details"
                     android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:text="@string/title_pg_sign_up_fill_educational_details"
                     android:textAlignment="center"
                     android:textColor="@color/lead_text_color"
                     android:textSize="25sp"
@@ -141,21 +142,21 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="25dp"
                     android:layout_marginBottom="20dp"
-                    android:textAlignment="center"
                     android:text="@string/desc_pg_register"
+                    android:textAlignment="center"
                     android:textColor="@color/body_text_color"
                     android:textSize="14sp"
                     app:fontFamily="@font/sf_ui_display_light" />
 
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textInputLayout_college_name"
+                    android:id="@+id/textInputLayout_select_institute"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="25dp"
                     android:layout_marginBottom="5dp"
-                    android:hint="@string/placeholder_college_name"
+                    android:hint="@string/placeholder_institute"
                     android:textColorHint="@color/body_text_color"
                     app:boxCornerRadiusBottomEnd="5dp"
                     app:boxCornerRadiusBottomStart="5dp"
@@ -172,7 +173,7 @@
                     app:startIconTint="@color/body_text_color">
 
                     <com.google.android.material.textfield.MaterialAutoCompleteTextView
-                        android:id="@+id/autoCompleteTextView_college_name"
+                        android:id="@+id/autoCompleteTextView_select_institute"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/sf_ui_display_regular"
@@ -222,52 +223,14 @@
 
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textInputLayout_sem_or_year"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="25dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="5dp"
-                    android:hint="@string/placeholder_sem_or_year"
-                    android:textColorHint="@color/body_text_color"
-                    app:boxCornerRadiusBottomEnd="5dp"
-                    app:boxCornerRadiusBottomStart="5dp"
-                    app:boxCornerRadiusTopEnd="5dp"
-                    app:boxCornerRadiusTopStart="5dp"
-                    app:boxStrokeErrorColor="@color/input_field_error_stroke"
-                    app:endIconMode="dropdown_menu"
-                    app:errorEnabled="false"
-                    app:errorIconDrawable="@drawable/ic_outline_error_outline_24"
-                    app:errorIconTint="@color/error_color"
-                    app:errorTextColor="@color/error_color"
-                    app:hintTextColor="@color/input_field_hint_color"
-                    app:startIconDrawable="@drawable/ic_outline_calendar_today_24"
-                    app:startIconTint="@color/body_text_color">
-
-                    <com.google.android.material.textfield.MaterialAutoCompleteTextView
-                        android:id="@+id/autoCompleteTextView_sem_or_year"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/sf_ui_display_regular"
-                        android:inputType="none"
-                        android:cursorVisible="false"
-                        android:editable="false"
-                        android:textColor="@color/lead_text_color"
-                        android:textSize="16sp" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textInputLayout_roll_no"
+                    android:id="@+id/textInputLayout_faculty_id"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="25dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="5dp"
-                    android:hint="@string/placeholder_roll_no_or_id"
+                    android:hint="@string/placeholder_faculty_id"
                     android:textColorHint="@color/body_text_color"
                     app:boxCornerRadiusBottomEnd="5dp"
                     app:boxCornerRadiusBottomStart="5dp"
@@ -283,7 +246,7 @@
                     app:startIconTint="@color/body_text_color">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/textInputEditText_roll_no"
+                        android:id="@+id/textInputEditText_faculty_id"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/sf_ui_display_regular"
@@ -325,6 +288,41 @@
                         android:inputType="none"
                         android:cursorVisible="false"
                         android:editable="false"
+                        android:textColor="@color/lead_text_color"
+                        android:textSize="16sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayout_phone_number"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="25dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:hint="@string/placeholder_phone_number"
+                    android:textColorHint="@color/body_text_color"
+                    app:boxCornerRadiusBottomEnd="5dp"
+                    app:boxCornerRadiusBottomStart="5dp"
+                    app:boxCornerRadiusTopEnd="5dp"
+                    app:boxCornerRadiusTopStart="5dp"
+                    app:boxStrokeErrorColor="@color/input_field_error_stroke"
+                    app:errorEnabled="false"
+                    app:errorIconDrawable="@drawable/ic_outline_error_outline_24"
+                    app:errorIconTint="@color/error_color"
+                    app:errorTextColor="@color/error_color"
+                    app:hintTextColor="@color/input_field_hint_color"
+                    app:startIconDrawable="@drawable/ic_outline_phone_24"
+                    app:startIconTint="@color/body_text_color">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/textInputEditText_phone_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sf_ui_display_regular"
+                        android:inputType="phone"
                         android:textColor="@color/lead_text_color"
                         android:textSize="16sp" />
 

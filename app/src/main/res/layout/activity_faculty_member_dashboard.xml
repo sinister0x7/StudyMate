@@ -8,7 +8,7 @@
     android:background="@color/background_color">
 
     <com.google.android.material.navigation.NavigationView
-        android:id="@+id/relativeLayout_top_nav_view_faculty"
+        android:id="@+id/relativeLayout_top_nav_view_faculty_member"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
         android:background="@drawable/bg_top_nav">
@@ -54,7 +54,7 @@
 
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/circleImageView_profile_image"
+                android:id="@+id/imageView_profile_image"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_centerVertical="true"
@@ -86,25 +86,25 @@
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_nav_view_faculty"
+        android:id="@+id/bottom_nav_view_faculty_member"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@drawable/bg_bottom_nav"
         app:itemTextAppearanceActive="@style/BottomNavigationViewActive"
         app:itemTextAppearanceInactive="@style/BottomNavigationViewInactive"
-        app:menu="@menu/bottom_nav_menu_faculty" />
+        app:menu="@menu/bottom_nav_menu_faculty_member" />
 
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/bottom_nav_host_fragment_faculty"
+        android:id="@+id/bottom_nav_host_fragment_faculty_member"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/bottom_nav_view_faculty"
-        android:layout_below="@+id/relativeLayout_top_nav_view_faculty"
+        android:layout_above="@+id/bottom_nav_view_faculty_member"
+        android:layout_below="@+id/relativeLayout_top_nav_view_faculty_member"
         app:defaultNavHost="true"
-        app:navGraph="@navigation/mobile_navigation_faculty" />
+        app:navGraph="@navigation/mobile_navigation_faculty_member" />
 
 </RelativeLayout>
 
