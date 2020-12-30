@@ -12,35 +12,42 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.netbucket.studymate.R;
-import com.netbucket.studymate.activities.MembersActivity;
+import com.netbucket.studymate.activities.FacultyMembersActivity;
+import com.netbucket.studymate.activities.StudentsActivity;
 
 public class AdminDashboardFragment extends Fragment {
 
-    RelativeLayout mButtonViewClasses;
-    String name;
-    TextView mName;
+    RelativeLayout mButtonViewStudents;
+    RelativeLayout mButtonViewFacultyMembers;
+    String mFullName;
+    TextView mFullNameView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            name = getArguments().getString("name");
+            mFullName = getArguments().getString("fullName");
         }
 
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.fragment_admin_dashboard, container, false);
-        mName = root.findViewById(R.id.textView_name);
-        mName.setText(name);
-        mButtonViewClasses = root.findViewById(R.id.button_view_requests);
+        View view = inflater.inflate(R.layout.fragment_admin_dashboard, container, false);
+        mFullNameView = view.findViewById(R.id.textView_full_name);
+        mFullNameView.setText(mFullName);
+        mButtonViewStudents = view.findViewById(R.id.button_view_students);
+        mButtonViewFacultyMembers = view.findViewById(R.id.button_view_faculty_members);
 
 
-        mButtonViewClasses.setOnClickListener(v -> {
-            Intent intent = new Intent(getContext(), MembersActivity.class);
+        mButtonViewStudents.setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), StudentsActivity.class);
             startActivity(intent);
         });
-        return root;
+        mButtonViewFacultyMembers.setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), FacultyMembersActivity.class);
+            startActivity(intent);
+        });
+        return view;
     }
 }
