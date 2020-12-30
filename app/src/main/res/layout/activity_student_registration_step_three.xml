@@ -140,7 +140,7 @@
                     android:layout_marginBottom="5dp">
 
                     <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/circleImageView_profile_image"
+                        android:id="@+id/imageView_profile_image"
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:background="?selectableItemBackgroundBorderless"
@@ -150,11 +150,11 @@
 
 
                     <com.google.android.material.floatingactionbutton.FloatingActionButton
-                        android:id="@+id/floatingActionButton_edit_profile"
+                        android:id="@+id/floatingActionButton_camera"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignEnd="@+id/circleImageView_profile_image"
-                        android:layout_alignBottom="@+id/circleImageView_profile_image"
+                        android:layout_alignEnd="@+id/imageView_profile_image"
+                        android:layout_alignBottom="@+id/imageView_profile_image"
                         android:contentDescription="@string/content_desc_edit_profile_fab"
                         android:scaleType="centerInside"
                         app:layout_anchorGravity="center"
