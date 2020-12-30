@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/color_bottom_nav_bg"
+    android:layout_margin="5dp"
+    app:cardCornerRadius="2dp"
+    app:cardElevation="2dp"
+    app:contentPadding="5dp"
+    app:rippleColor="@color/ripple_primary_blue">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/constraintLayout_item">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imageView_profile_image"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="3dp"
+            android:src="@drawable/ic_baseline_person_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textView_full_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:maxLines="1"
+            android:text="@string/placeholder_full_name"
+            android:textAlignment="center"
+            android:textColor="@color/lead_text_color"
+            android:textSize="18sp"
+            app:fontFamily="@font/sf_ui_display_regular"
+            app:layout_constraintStart_toEndOf="@id/imageView_profile_image"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textView_faculty_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="3dp"
+            android:layout_marginStart="15dp"
+            android:maxLines="1"
+            android:text="@string/placeholder_faculty_id"
+            android:textAlignment="center"
+            android:textColor="@color/body_text_color"
+            android:textSize="16sp"
+            app:fontFamily="@font/sf_ui_display_regular"
+            app:layout_constraintStart_toEndOf="@id/imageView_profile_image"
+            app:layout_constraintTop_toBottomOf="@id/textView_full_name" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textView_course"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="3dp"
+            android:layout_marginStart="15dp"
+            android:gravity="bottom"
+            android:maxLines="1"
+            android:text="@string/item_placeholder_course"
+            android:textColor="@color/body_text_color"
+            android:textSize="16sp"
+            app:fontFamily="@font/sf_ui_display_regular"
+            app:layout_constraintStart_toEndOf="@id/imageView_profile_image"
+            app:layout_constraintTop_toBottomOf="@id/textView_faculty_id" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
