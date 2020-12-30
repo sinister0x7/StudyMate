@@ -116,7 +116,7 @@ public class CommonRegistrationStepOneActivity extends AppCompatActivity {
                         startActivity(intent);
 
                     } else if (mRole.equals(mRolesArray[1])) {
-                        Intent intent = new Intent(CommonRegistrationStepOneActivity.this, FacultyRegistrationStepTwoActivity.class);
+                        Intent intent = new Intent(CommonRegistrationStepOneActivity.this, FacultyMemberRegistrationStepTwoActivity.class);
                         intent.putExtra("fullName", mFullName);
                         intent.putExtra("email", mEmail);
                         intent.putExtra("role", mRole);
@@ -237,7 +237,7 @@ public class CommonRegistrationStepOneActivity extends AppCompatActivity {
             requestFocus(mRoleField);
             return null;
         } else {
-            if (role.contentEquals(getString(R.string.role_admin)) || role.contentEquals(getString(R.string.role_faculty)) || role.contentEquals(getString(R.string.role_student))) {
+            if (role.contentEquals(getString(R.string.role_admin)) || role.contentEquals(getString(R.string.role_faculty_member)) || role.contentEquals(getString(R.string.role_student))) {
                 mRoleLayout.setErrorEnabled(false);
                 mRole = role;
                 return role;
