@@ -123,11 +123,11 @@
     <string name="error_empty_full_name">Name can\'t be empty</string>
     <string name="error_invalid_full_name">Invalid Name</string>
     <string name="role_admin">Admin/HOD</string>
-    <string name="role_faculty">Faculty</string>
+    <string name="role_faculty_member">Faculty</string>
     <string name="role_student">Student</string>
     <string-array name="roles">
         <item>@string/role_admin</item>
-        <item>@string/role_faculty</item>
+        <item>@string/role_faculty_member</item>
         <item>@string/role_student</item>
     </string-array>
     <string name="placeholder_role">Role</string>
@@ -154,7 +154,7 @@
 
     <!-- SignUp Fill Educational Details Screen -->
     <string name="title_pg_sign_up_fill_educational_details">Institutional Details</string>
-    <string name="placeholder_college_name">College Name</string>
+    <string name="placeholder_institute">College Name</string>
     <string name="error_empty_college_name">Please select your College</string>
     <string name="error_invalid_college_name">Invalid College Name</string>
     <string name="placeholder_course">Select Course</string>
@@ -253,9 +253,7 @@
     <string name="card_txt_classes_student">Classes today</string>
     <string name="card_txt_classes_admin">Classes today</string>
     <string name="card_txt_classes_faculty">Classes today</string>
-    <string name="card_txt_notes_student">Total notes</string>
-    <string name="card_txt_notes_admin">Total notes</string>
-    <string name="card_txt_notes_faculty">Total notes</string>
+    <string name="card_txt_notes">Total notes</string>
     <string name="card_txt_requests_admin">New requests</string>
     <string name="content_desc_about_us">About Us</string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -269,7 +267,7 @@
     <string name="textView_content_email">Failed to load Email</string>
     <string name="textView_content_phone">Failed to load Phone</string>
     <string name="textView_content_about">Failed to load Bio</string>
-    <string name="textView_content_college">Failed to load College</string>
+    <string name="textView_content_institute">Failed to load College</string>
     <string name="textView_content_role">Failed to load Role</string>
     <string name="textView_content_course">Failed to load Course</string>
     <string name="textView_content_birthday">Failed to load Date of Birth</string>
@@ -280,7 +278,7 @@
     <string name="btn_txt_logout">Logout</string>
     <string name="content_desc_edit_profile_fab">Edit Profile</string>
     <string name="textView_title_phone">Phone</string>
-    <string name="textView_title_college">College</string>
+    <string name="textView_title_institute">College</string>
     <string name="textView_title_about">Bio</string>
     <string name="textView_title_role">Role</string>
     <string name="textView_title_course">Course</string>
@@ -288,9 +286,9 @@
     <string name="content_desc_menu_btn">Menu</string>
     <string name="placeholder_about">About</string>
     <string name="title_pg_sign_up_fill_profile_details">Setup Your Profile</string>
-    <string name="title_pg_user_approval_pending">User Approval Pending</string>
-    <string name="desc_pg_user_approval_pending">Sorry! you are not approved by admin/HOD in your college.</string>
-    <string name="desc_pg_user_approval_pending2">You will be redirected to dashboard if your college will allow you to join the classes.</string>
+    <string name="title_pg_user_not_allowed">User Approval Pending</string>
+    <string name="desc_pg_user_not_allowed">Sorry! you are not approved by admin/HOD in your college.</string>
+    <string name="subDesc_pg_user_not_allowed">You will be redirected to dashboard if your college will allow you to join the classes.</string>
     <string name="btn_txt_exit_app">Close App</string>
     <string name="desc_pg_sign_up_fill_profile_details">Please create username and provide an optional profile picture.</string>
     <string name="btn_txt_refresh">Refresh</string>
