@@ -56,8 +56,9 @@ public class StudentRegistrationStepThreeActivity extends AppCompatActivity {
     Button mRegisterButton;
     TextView mLoginActivityLink;
     MaterialDialog mProgressDialog;
-    String mUserReference;
-    String mIsApproved;
+    String mUserPath;
+    String mUserStatus;
+    String mProfileEditAccess = "revoked";
     FloatingActionButton mCameraFab;
     private FirebaseAuth mAuth;
     private FirebaseFirestore mStore;
@@ -67,7 +68,7 @@ public class StudentRegistrationStepThreeActivity extends AppCompatActivity {
     private String mRole;
     private String mGender;
     private String mPassword;
-    private String mCollegeName;
+    private String mInstitute;
     private String mCourse;
     private String mSemOrYear;
     private String mId;
@@ -86,6 +87,8 @@ public class StudentRegistrationStepThreeActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 mImageUri = Objects.requireNonNull(result).getUri();
                 mProfileImage.setImageURI(mImageUri);
+                Log.d("Image URI:", String.valueOf(mImageUri));
+
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
                 Exception exception = Objects.requireNonNull(result).getError();
                 Toast.makeText(this, "Error:" + exception, Toast.LENGTH_SHORT).show();
@@ -106,13 +109,13 @@ public class StudentRegistrationStepThreeActivity extends AppCompatActivity {
         mRole = intent.getStringExtra("role");
         mGender = intent.getStringExtra("gender");
         mPassword = intent.getStringExtra("password");
-        mCollegeName = intent.getStringExtra("collegeName");
+        mInstitute = intent.getStringExtra("institute");
         mCourse = intent.getStringExtra("course");
         mSemOrYear = intent.getStringExtra("semOrYear");
         mId = intent.getStringExtra("id");
         mBirthday = intent.getStringExtra("birthday");
 
-        mProfileImage = findViewById(R.id.circleImageView_profile_image);
+        mProfileImage = findViewById(R.id.imageView_profile_image);
         mUsernameLayout = findViewById(R.id.textInputLayout_username);
         mPhoneNumberLayout = findViewById(R.id.textInputLayout_phone_number);
         mAboutLayout = findViewById(R.id.textInputLayout_about);
@@ -125,7 +128,7 @@ public class StudentRegistrationStepThreeActivity extends AppCompatActivity {
         mCameraFab = findViewById(R.id.floatingActionButton_camera);
 
         mAboutField.setText("Hey There! I am using StudyMate.");
-        mIsApproved = "false";
+        mUserStatus = "disallowed";
 
         mUsernameField.addTextChangedListener(new ValidationWatcher(mUsernameField));
         mPhoneNumberField.addTextChangedListener(new ValidationWatcher(mPhoneNumberField));
@@ -144,7 +147,7 @@ public class StudentRegistrationStepThreeActivity extends AppCompatActivity {
             }
         });
 
-        mCameraFab.setOnClickListener(v -> CropImage.activity()
+        mCameraFab.setOnClickListener(view -> CropImage.activity()
                 .setGuidelines(CropImageView.Guidelines.ON)
                 .setAspectRatio(1, 1)
                 .start(StudentRegistrationStepThreeActivity.this));
@@ -182,40 +185,40 @@ public class StudentRegistrationStepThreeActivity extends AppCompatActivity {
                                             Log.d("Profile image URI:", String.valueOf(uri));
                                             mProfileImageUri = uri;
 
-
-                                            Map<String, String> userData = new HashMap<>();
-                                            mUserReference = "/colleges/" + mCollegeName + "/courses/" + mCourse + "/semOrYear/" + mSemOrYear + "/students/" + Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
-                                            userData.put("reference", mUserReference);
-                                            userData.put("isApproved", mIsApproved);
-                                            userData.put("username", mUsername);
-                                            userData.put("profileImage", String.valueOf(mProfileImageUri));
+                                            Map<String, String> rootData = new HashMap<>();
+                                            mUserPath = "/institutes/" + mInstitute + "/courses/" + mCourse + "/students/" + Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
+                                            rootData.put("userPath", mUserPath);
+                                            rootData.put("userStatus", mUserStatus);
+                                            rootData.put("username", mUsername);
+                                            rootData.put("profileImageUri", String.valueOf(mProfileImageUri));
 
                                             mStore.collection(("users"))
                                                     .document(Objects.requireNonNull(mAuth.getCurrentUser()).getUid())
-                                                    .set(userData)
+                                                    .set(rootData)
                                                     .addOnSuccessListener(aVoid -> {
                                                         Log.i("Reference created:", Objects.requireNonNull(mAuth.getCurrentUser()).getUid());
 
-                                                        Map<String, String> userData1 = new HashMap<>();
-                                                        userData1.put("fullName", mFullName);
-                                                        userData1.put("email", mEmail);
-                                                        userData1.put("role", mRole);
-                                                        userData1.put("gender", mGender);
-                                                        userData1.put("password", mPassword);
-                                                        userData1.put("collegeName", mCollegeName);
-                                                        userData1.put("course", mCourse);
-                                                        userData1.put("semOrYear", mSemOrYear);
-                                                        userData1.put("id", mId);
-                                                        userData1.put("birthday", mBirthday);
-                                                        userData1.put("phoneNumber", mPhoneNumber);
-                                                        userData1.put("username", mUsername);
-                                                        userData1.put("about", mAbout);
-                                                        userData1.put("isApproved", mIsApproved);
+                                                        Map<String, String> referenceData = new HashMap<>();
+                                                        referenceData.put("fullName", mFullName);
+                                                        referenceData.put("email", mEmail);
+                                                        referenceData.put("role", mRole);
+                                                        referenceData.put("gender", mGender);
+                                                        referenceData.put("password", mPassword);
+                                                        referenceData.put("institute", mInstitute);
+                                                        referenceData.put("course", mCourse);
+                                                        referenceData.put("semOrYear", mSemOrYear);
+                                                        referenceData.put("id", mId);
+                                                        referenceData.put("birthday", mBirthday);
+                                                        referenceData.put("phoneNumber", mPhoneNumber);
+                                                        referenceData.put("username", mUsername);
+                                                        referenceData.put("about", mAbout);
+                                                        referenceData.put("userStatus", mUserStatus);
+                                                        referenceData.put("profileEditAccess", mProfileEditAccess);
+                                                        referenceData.put("profileImageUri", String.valueOf(mProfileImageUri));
 
-
-                                                        mStore.collection("/colleges/" + mCollegeName + "/courses/" + mCourse + "/semOrYear/" + mSemOrYear + "/students/")
+                                                        mStore.collection("/institutes/" + mInstitute + "/courses/" + mCourse + "/students/")
                                                                 .document(Objects.requireNonNull(mAuth.getCurrentUser()).getUid())
-                                                                .set(userData1)
+                                                                .set(referenceData)
                                                                 .addOnSuccessListener(aVoid1 -> {
                                                                     Log.i("Data stored:", Objects.requireNonNull(mAuth.getCurrentUser()).getUid());
 
@@ -224,7 +227,7 @@ public class StudentRegistrationStepThreeActivity extends AppCompatActivity {
                                                                                 Log.i("Signed in:", Objects.requireNonNull(mAuth.getCurrentUser()).getUid());
 
                                                                                 SessionManager sessionManager = new SessionManager(StudentRegistrationStepThreeActivity.this, SessionManager.SESSION_USER_SESSION);
-                                                                                sessionManager.createUserSession(mAuth.getCurrentUser().getUid(), mUserReference, mIsApproved, mFullName, mEmail, mRole, mGender, mPassword, mCollegeName, mCourse, mId, mBirthday, mPhoneNumber, mUsername, mAbout, mSemOrYear, String.valueOf(mProfileImageUri));
+                                                                                sessionManager.createUserSession(mAuth.getCurrentUser().getUid(), mUserPath, mUserStatus, mFullName, mEmail, mRole, mGender, mPassword, mInstitute, mCourse, mId, mBirthday, mPhoneNumber, mUsername, mAbout, mSemOrYear, String.valueOf(mProfileImageUri));
                                                                                 Intent intent = new Intent(getApplicationContext(), UserApprovalPendingActivity.class);
                                                                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                                                                 mProgressDialog.dismiss();
