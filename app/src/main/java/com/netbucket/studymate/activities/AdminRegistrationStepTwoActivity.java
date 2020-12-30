@@ -37,12 +37,12 @@ import java.util.regex.Pattern;
 
 public class AdminRegistrationStepTwoActivity extends AppCompatActivity {
 
-    TextInputLayout mCollegeNameLayout;
+    TextInputLayout mInstituteLayout;
     TextInputLayout mCourseLayout;
     TextInputLayout mIdLayout;
     TextInputLayout mBirthdayLayout;
     TextInputLayout mPhoneNumberLayout;
-    AutoCompleteTextView mCollegeNameField;
+    AutoCompleteTextView mInstituteField;
     AutoCompleteTextView mCourseField;
     TextInputEditText mIdField;
     TextInputEditText mBirthdayField;
@@ -57,12 +57,12 @@ public class AdminRegistrationStepTwoActivity extends AppCompatActivity {
     private String mRole;
     private String mGender;
     private String mPassword;
-    private String mCollegeName;
+    private String mInstitute;
     private String mCourse;
     private String mId;
     private String mBirthday;
     private String mPhoneNumber;
-    private ArrayList<String> mCollegeList;
+    private ArrayList<String> mInstituteList;
     private ArrayList<String> mCourseList;
     private FirebaseFirestore mStore;
 
@@ -80,12 +80,12 @@ public class AdminRegistrationStepTwoActivity extends AppCompatActivity {
         mGender = intent.getStringExtra("gender");
         mPassword = intent.getStringExtra("password");
 
-        mCollegeNameLayout = findViewById(R.id.textInputLayout_college_name);
+        mInstituteLayout = findViewById(R.id.textInputLayout_select_institute);
         mCourseLayout = findViewById(R.id.textInputLayout_select_course);
         mIdLayout = findViewById(R.id.textInputLayout_faculty_id);
         mBirthdayLayout = findViewById(R.id.textInputLayout_birthday);
         mPhoneNumberLayout = findViewById(R.id.textInputLayout_phone_number);
-        mCollegeNameField = findViewById(R.id.autoCompleteTextView_college_name);
+        mInstituteField = findViewById(R.id.autoCompleteTextView_select_institute);
         mCourseField = findViewById(R.id.autoCompleteTextView_select_course);
         mIdField = findViewById(R.id.textInputEditText_faculty_id);
         mBirthdayField = findViewById(R.id.textInputEditText_birthday);
@@ -97,10 +97,10 @@ public class AdminRegistrationStepTwoActivity extends AppCompatActivity {
 
         mStore = FirebaseFirestore.getInstance();
 
-        mCollegeList = new ArrayList<>();
-        fetchColleges();
-        ArrayAdapter<String> collegeNameAdapter = new ArrayAdapter<>(this, R.layout.dropdown_menu_popup_item, mCollegeList);
-        mCollegeNameField.setAdapter(collegeNameAdapter);
+        mInstituteList = new ArrayList<>();
+        fetchInstitutes();
+        ArrayAdapter<String> instituteAdapter = new ArrayAdapter<>(this, R.layout.dropdown_menu_popup_item, mInstituteList);
+        mInstituteField.setAdapter(instituteAdapter);
 
         mCourseList = new ArrayList<>();
         ArrayAdapter<String> courseAdapter = new ArrayAdapter<>(this, R.layout.dropdown_menu_popup_item, mCourseList);
@@ -122,19 +122,19 @@ public class AdminRegistrationStepTwoActivity extends AppCompatActivity {
         materialDateBuilder.setCalendarConstraints(calendarConstraintsBuilder.build());
         final MaterialDatePicker<Long> materialDatePicker = materialDateBuilder.build();
 
-        mCollegeNameField.addTextChangedListener(new ValidationWatcher(mCollegeNameField));
+        mInstituteField.addTextChangedListener(new ValidationWatcher(mInstituteField));
         mCourseField.addTextChangedListener(new ValidationWatcher(mCourseField));
         mIdField.addTextChangedListener(new ValidationWatcher(mIdField));
         mBirthdayField.addTextChangedListener(new ValidationWatcher(mBirthdayField));
         mPhoneNumberField.addTextChangedListener(new ValidationWatcher(mPhoneNumberField));
 
         mRefreshButton.setOnClickListener(view -> {
-            if (mCollegeList.isEmpty()) {
-                fetchColleges();
+            if (mInstituteList.isEmpty()) {
+                fetchInstitutes();
             }
         });
 
-        mCollegeNameLayout.setOnClickListener(view -> mCollegeNameField.showDropDown());
+        mInstituteLayout.setOnClickListener(view -> mInstituteField.showDropDown());
 
         mCourseLayout.setOnClickListener(view -> mCourseField.showDropDown());
 
@@ -145,7 +145,7 @@ public class AdminRegistrationStepTwoActivity extends AppCompatActivity {
         mBackButton.setOnClickListener(view -> onBackPressed());
 
         mNextButton.setOnClickListener(view -> {
-            if ((validCollegeName() != null) && (validCourse() != null) && (validId() != null) && (validBirthday() != null) && (validPhoneNo() != null)) {
+            if ((validInstitute() != null) && (validCourse() != null) && (validId() != null) && (validBirthday() != null) && (validPhoneNo() != null)) {
                 if (new NetworkInfoUtility(getApplicationContext()).isConnectedToInternet()) {
                     mProgressDialog = new MaterialDialog.Builder(AdminRegistrationStepTwoActivity.this)
                             .typeface(getResources().getFont(R.font.sf_ui_display_medium), getResources().getFont(R.font.sf_ui_display_regular))
@@ -163,7 +163,7 @@ public class AdminRegistrationStepTwoActivity extends AppCompatActivity {
                     intent1.putExtra("role", mRole);
                     intent1.putExtra("gender", mGender);
                     intent1.putExtra("password", mPassword);
-                    intent1.putExtra("collegeName", mCollegeName);
+                    intent1.putExtra("institute", mInstitute);
                     intent1.putExtra("course", mCourse);
                     intent1.putExtra("id", mId);
                     intent1.putExtra("birthday", mBirthday);
@@ -209,7 +209,7 @@ public class AdminRegistrationStepTwoActivity extends AppCompatActivity {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    private void fetchColleges() {
+    private void fetchInstitutes() {
         mProgressDialog = new MaterialDialog.Builder(AdminRegistrationStepTwoActivity.this)
                 .typeface(getResources().getFont(R.font.sf_ui_display_medium), getResources().getFont(R.font.sf_ui_display_regular))
                 .progress(true, 0)
@@ -224,7 +224,7 @@ public class AdminRegistrationStepTwoActivity extends AppCompatActivity {
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     for (QueryDocumentSnapshot item : queryDocumentSnapshots) {
-                        mCollegeList.add(item.getId());
+                        mInstituteList.add(item.getId());
                         Log.i("Colleges list:", item.getId());
                     }
                     mProgressDialog.dismiss();
@@ -233,7 +233,7 @@ public class AdminRegistrationStepTwoActivity extends AppCompatActivity {
                     Log.e("Failed to get colleges", Objects.requireNonNull(e.getMessage()));
 
                     mProgressDialog.dismiss();
-                    fetchColleges();
+                    fetchInstitutes();
                 });
     }
 
@@ -249,7 +249,7 @@ public class AdminRegistrationStepTwoActivity extends AppCompatActivity {
 //                .build();
 //        mProgressDialog.show();
 
-        mStore.collection("/colleges/" + mCollegeName + "/courses")
+        mStore.collection("/institutes/" + mInstitute + "/courses/")
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     for (QueryDocumentSnapshot item : queryDocumentSnapshots) {
@@ -273,27 +273,27 @@ public class AdminRegistrationStepTwoActivity extends AppCompatActivity {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    private String validCollegeName() {
-        String collegeName = Objects.requireNonNull(mCollegeNameLayout.getEditText()).getText().toString().trim();
-        Pattern collegeNamePattern = Pattern.compile("^\\p{L}+[\\p{L}\\p{Z}\\p{P}\\p{N}]{0,80}");
-        Matcher collegeNameMatcher = collegeNamePattern.matcher(collegeName);
+    private String validInstitute() {
+        String institute = Objects.requireNonNull(mInstituteLayout.getEditText()).getText().toString().trim();
+        Pattern institutePattern = Pattern.compile("^\\p{L}+[\\p{L}\\p{Z}\\p{P}\\p{N}]{0,80}");
+        Matcher instituteMatcher = institutePattern.matcher(institute);
 
-        if (collegeName.isEmpty()) {
-            mCollegeNameLayout.setError(getString(R.string.error_empty_college_name));
-            requestFocus(mCollegeNameField);
+        if (institute.isEmpty()) {
+            mInstituteLayout.setError(getString(R.string.error_empty_college_name));
+            requestFocus(mInstituteField);
             return null;
         } else {
-            if (collegeNameMatcher.matches() && mCollegeList.contains(collegeName)) {
-                mCollegeNameLayout.setErrorEnabled(false);
-                mCollegeName = collegeName;
-                if (mCollegeList.contains(mCollegeName)) {
+            if (instituteMatcher.matches() && mInstituteList.contains(institute)) {
+                mInstituteLayout.setErrorEnabled(false);
+                mInstitute = institute;
+                if (mInstituteList.contains(mInstitute)) {
                     mCourseList.clear();
                     fetchCourses();
                 }
-                return collegeName;
+                return institute;
             } else {
-                mCollegeNameLayout.setError(getString(R.string.error_invalid_college_name));
-                requestFocus(mCollegeNameField);
+                mInstituteLayout.setError(getString(R.string.error_invalid_college_name));
+                requestFocus(mInstituteField);
                 return null;
             }
         }
@@ -400,8 +400,8 @@ public class AdminRegistrationStepTwoActivity extends AppCompatActivity {
         @RequiresApi(api = Build.VERSION_CODES.O)
         public void afterTextChanged(Editable editable) {
             switch (view.getId()) {
-                case R.id.autoCompleteTextView_college_name:
-                    validCollegeName();
+                case R.id.autoCompleteTextView_select_institute:
+                    validInstitute();
                     break;
                 case R.id.autoCompleteTextView_select_course:
                     validCourse();
