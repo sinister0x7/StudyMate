@@ -39,7 +39,7 @@
 
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/textView_name"
+                    android:id="@+id/textView_full_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/textView_greetings"
@@ -322,7 +322,7 @@
                             android:layout_marginStart="10dp"
                             android:layout_marginEnd="10dp"
                             android:fontFamily="@font/sf_ui_display_regular"
-                            android:text="@string/card_txt_notes_admin"
+                            android:text="@string/card_txt_notes"
                             android:textColor="@color/text_white"
                             android:textSize="16sp" />
 
@@ -473,25 +473,26 @@
 
 
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cardView_requests"
-                    android:layout_width="match_parent"
-                    android:layout_height="140dp"
+                    android:id="@+id/cardView_students"
+                    android:layout_width="0dp"
+                    android:layout_height="180dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="15dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginBottom="15dp"
-                    app:cardBackgroundColor="@color/card_blue"
+                    android:layout_marginEnd="7.5dp"
+                    app:cardBackgroundColor="@color/card_purple"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="4dp"
+                    app:layout_constraintEnd_toStartOf="@+id/cardView_faculty_members"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/cardView_notes">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="100dp"
+                        android:layout_height="140dp"
                         android:layout_gravity="top">
 
                         <com.google.android.material.textview.MaterialTextView
-                            android:id="@+id/num_requests"
+                            android:id="@+id/num_students"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentStart="true"
@@ -505,27 +506,25 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_alignEnd="@+id/num_students"
                             android:layout_alignParentEnd="true"
                             android:layout_marginTop="10dp"
                             android:layout_marginEnd="10dp"
-                            android:contentDescription="@string/content_desc_requests"
-                            android:src="@drawable/ic_baseline_person_add_24"
+                            android:contentDescription="@string/content_desc_students"
+                            android:src="@drawable/ic_baseline_library_books_24"
                             app:tint="@color/icon_tint_white" />
 
 
                         <com.google.android.material.textview.MaterialTextView
-                            android:id="@+id/textView_requests"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignBaseline="@+id/num_requests"
+                            android:layout_below="@+id/num_students"
                             android:layout_marginStart="10dp"
                             android:layout_marginEnd="10dp"
-                            android:layout_toEndOf="@+id/num_requests"
                             android:fontFamily="@font/sf_ui_display_regular"
-                            android:text="@string/card_txt_requests_admin"
+                            android:text="@string/card_txt_students"
                             android:textColor="@color/text_white"
-                            android:textSize="16sp"
-                            tools:ignore="RelativeOverlap" />
+                            android:textSize="16sp" />
 
                     </RelativeLayout>
 
@@ -533,12 +532,112 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:layout_marginTop="100dp"
+                        android:layout_marginTop="140dp"
                         android:background="@color/md_divider_black" />
 
 
                     <RelativeLayout
-                        android:id="@+id/button_view_requests"
+                        android:id="@+id/button_view_students"
+                        android:layout_width="match_parent"
+                        android:layout_height="39dp"
+                        android:layout_gravity="bottom"
+                        android:background="?selectableItemBackground">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="10dp"
+                            android:fontFamily="@font/sf_ui_display_bold"
+                            android:text="@string/btn_txt_view"
+                            android:textAllCaps="true"
+                            android:textColor="@color/text_white"
+                            android:textSize="18sp"
+                            tools:ignore="RelativeOverlap" />
+
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="bottom"
+                            android:layout_marginEnd="10dp"
+                            android:contentDescription="@string/content_desc_view_btn"
+                            android:src="@drawable/ic_outline_chevron_right_24"
+                            app:tint="@color/icon_tint_white" />
+
+                    </RelativeLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardView_faculty_members"
+                    android:layout_width="0dp"
+                    android:layout_height="180dp"
+                    android:layout_marginStart="7.5dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="20dp"
+                    app:cardBackgroundColor="@color/card_green"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="4dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/cardView_students"
+                    app:layout_constraintTop_toBottomOf="@+id/cardView_notes">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="140dp"
+                        android:layout_gravity="top">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/num_faculty_members"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginStart="10dp"
+                            android:fontFamily="@font/titillium_light"
+                            android:text="@string/numbers_default"
+                            android:textColor="@color/text_white"
+                            android:textSize="72sp"
+                            tools:ignore="RelativeOverlap" />
+
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:contentDescription="@string/content_desc_faculty_members"
+                            android:src="@drawable/ic_baseline_event_note_24"
+                            app:tint="@color/icon_tint_white" />
+
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/num_faculty_members"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:fontFamily="@font/sf_ui_display_regular"
+                            android:text="@string/card_txt_faculty_members"
+                            android:textColor="@color/text_white"
+                            android:textSize="16sp" />
+
+                    </RelativeLayout>
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="140dp"
+                        android:background="@color/md_divider_black" />
+
+
+                    <RelativeLayout
+                        android:id="@+id/button_view_faculty_members"
                         android:layout_width="match_parent"
                         android:layout_height="39dp"
                         android:layout_gravity="bottom"
@@ -584,7 +683,7 @@
                     app:cardCornerRadius="8dp"
                     app:cardElevation="2dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/cardView_requests">
+                    app:layout_constraintTop_toBottomOf="@id/cardView_students">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
