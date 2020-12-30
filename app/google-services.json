@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "864100719242-aecdeaa2r1v0eru9upnbk9u5qiatold4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.netbucket.studymate",
+            "certificate_hash": "91b621600401498369dc0f9c499b90150a1654c3"
+          }
+        },
+        {
           "client_id": "864100719242-pkgg4onhs2lagonkq6vs22nhdkdqthdr.apps.googleusercontent.com",
           "client_type": 3
         }
