@@ -20,6 +20,7 @@
         <item name="controlBackground">@color/background_color</item>
         <item name="android:statusBarColor">@color/background_color</item>
         <item name="android:windowLightStatusBar">true</item>
+        <item name="tabIconTint">@color/colorPrimary</item>
 
         <item name="android:colorControlHighlight">@color/ripple_primary_blue</item>
 
@@ -41,8 +42,27 @@
     </style>
 
     <style name="TabText" parent="android:TextAppearance.Material.Widget.TabWidget">
-        <item name="fontFamily">@font/sf_ui_display_regular</item>
+        <item name="fontFamily">@font/exo_medium</item>
+        <item name="android:textSize">14sp</item>
     </style>
+
+<!--    <style name="BottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">-->
+<!--        <item name="bottomSheetStyle">@style/BottomSheetStyle</item>-->
+<!--        <item name="controlBackground">@color/background_color</item>-->
+<!--        <item name="statusBarBackground">@color/colorPrimaryDark</item>-->
+<!--        <item name="android:statusBarColor">@color/background_color</item>-->
+<!--        <item name="android:windowLightStatusBar">false</item>-->
+<!--        <item name="android:navigationBarColor">@color/background_color</item>-->
+<!--    </style>-->
+
+<!--    <style name="BottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">-->
+<!--        <item name="android:background">@color/colorPrimaryDark</item>-->
+<!--        <item name="controlBackground">@color/background_color</item>-->
+<!--        <item name="android:navigationBarColor">@color/background_color</item>-->
+<!--        <item name="statusBarBackground">@color/colorPrimaryDark</item>-->
+<!--        <item name="android:statusBarColor">@color/background_color</item>-->
+<!--        <item name="android:windowLightStatusBar">false</item>-->
+<!--    </style>-->
 
 
 

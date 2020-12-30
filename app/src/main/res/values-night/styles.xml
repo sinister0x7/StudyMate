@@ -40,7 +40,7 @@
 
     <style name="TabText" parent="android:TextAppearance.Material.Widget.TabWidget">
         <item name="fontFamily">@font/exo_medium</item>
-        <item name="android:textSize">11sp</item>
+        <item name="android:textSize">14sp</item>
     </style>
 
 </resources>
