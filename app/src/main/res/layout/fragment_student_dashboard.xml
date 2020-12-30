@@ -39,7 +39,7 @@
 
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/textView_name"
+                    android:id="@+id/textView_full_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/textView_greetings"
@@ -321,7 +321,7 @@
                             android:layout_marginStart="10dp"
                             android:layout_marginEnd="10dp"
                             android:fontFamily="@font/sf_ui_display_regular"
-                            android:text="@string/card_txt_notes_student"
+                            android:text="@string/card_txt_notes"
                             android:textColor="@color/text_white"
                             android:textSize="16sp" />
 
