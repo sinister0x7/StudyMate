@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    tools:context=".activities.AdminNotesActivity">
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigationView_admin_notes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_top_nav">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar_admin_notes"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:background="@drawable/bg_top_nav"
+            app:contentInsetStart="0dp"
+            app:contentInsetStartWithNavigation="0dp"
+            app:navigationIcon="@drawable/ic_outline_arrow_back_24"
+            app:popupTheme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"
+            app:title="Notes" />
+
+    </com.google.android.material.navigation.NavigationView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_notes"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/navigationView_admin_notes"
+        android:background="@color/background_color" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton_add_note"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:contentDescription="@string/content_desc_add_note"
+        android:src="@drawable/ic_baseline_note_add_24"
+        app:backgroundTint="@color/colorAccent"
+        app:elevation="6dp"
+        app:maxImageSize="28dp" />
+
+</RelativeLayout>
