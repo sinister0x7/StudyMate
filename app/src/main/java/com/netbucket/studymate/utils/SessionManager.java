@@ -10,13 +10,13 @@ public class SessionManager {
     public static final String SESSION_USER_SESSION = "sessionUserLogin";
     public static final String KEY_UID = "uid";
     public static final String KEY_USER_PATH = "path";
-    public static final String KEY_APPROVAL_STATUS = "isApproved";
+    public static final String KEY_USER_STATUS = "userStatus";
     public static final String KEY_EMAIL = "email";
     public static final String KEY_PASSWORD = "password";
     public static final String KEY_ROLE = "role";
     public static final String KEY_GENDER = "gender";
     public static final String KEY_FULL_NAME = "fullName";
-    public static final String KEY_COLLEGE_NAME = "collegeName";
+    public static final String KEY_INSTITUTE = "institute";
     public static final String KEY_COURSE = "course";
     public static final String KEY_ID = "id";
     public static final String KEY_BIRTHDAY = "birthday";
@@ -58,19 +58,19 @@ public class SessionManager {
 
 //    MasterKey exMasterKey = new MasterKey.Builder(mContext, MasterKey.DEFAULT_MASTER_KEY_ALIAS).setKeyScheme(MasterKey.KeyScheme.AES256_GCM).build();
 
-    public void createUserSession(String uid, String path, String isApproved, String fullName, String email, String role, String gender, String password, String collegeName, String course, String id, String birthday, String phoneNumber, String username, String about, String semOrYear, String profileImageUri) {
+    public void createUserSession(String uid, String userPath, String userStatus, String fullName, String email, String role, String gender, String password, String institute, String course, String id, String birthday, String phoneNumber, String username, String about, String semOrYear, String profileImageUri) {
         mSharedPrefEditor.putBoolean(IS_LOGGED_IN, true);
 
         mSharedPrefEditor.putString(KEY_UID, uid);
-        mSharedPrefEditor.putString(KEY_USER_PATH, path);
+        mSharedPrefEditor.putString(KEY_USER_PATH, userPath);
 
-        mSharedPrefEditor.putString(KEY_APPROVAL_STATUS, isApproved);
+        mSharedPrefEditor.putString(KEY_USER_STATUS, userStatus);
         mSharedPrefEditor.putString(KEY_FULL_NAME, fullName);
         mSharedPrefEditor.putString(KEY_EMAIL, email);
         mSharedPrefEditor.putString(KEY_ROLE, role);
         mSharedPrefEditor.putString(KEY_GENDER, gender);
         mSharedPrefEditor.putString(KEY_PASSWORD, password);
-        mSharedPrefEditor.putString(KEY_COLLEGE_NAME, collegeName);
+        mSharedPrefEditor.putString(KEY_INSTITUTE, institute);
         mSharedPrefEditor.putString(KEY_COURSE, course);
         mSharedPrefEditor.putString(KEY_ID, id);
         mSharedPrefEditor.putString(KEY_BIRTHDAY, birthday);
@@ -83,8 +83,8 @@ public class SessionManager {
         mSharedPrefEditor.apply();
     }
 
-    public void createUserSession(String isApproved) {
-        mSharedPrefEditor.putString(KEY_APPROVAL_STATUS, isApproved);
+    public void createUserSession(String userStatus) {
+        mSharedPrefEditor.putString(KEY_USER_STATUS, userStatus);
         mSharedPrefEditor.apply();
     }
 
@@ -92,13 +92,13 @@ public class SessionManager {
         HashMap<String, String> storedUserData = new HashMap<>();
         storedUserData.put(KEY_UID, mUserSession.getString(KEY_UID, null));
         storedUserData.put(KEY_USER_PATH, mUserSession.getString(KEY_USER_PATH, null));
-        storedUserData.put(KEY_APPROVAL_STATUS, mUserSession.getString(KEY_APPROVAL_STATUS, null));
+        storedUserData.put(KEY_USER_STATUS, mUserSession.getString(KEY_USER_STATUS, null));
         storedUserData.put(KEY_FULL_NAME, mUserSession.getString(KEY_FULL_NAME, null));
         storedUserData.put(KEY_EMAIL, mUserSession.getString(KEY_EMAIL, null));
         storedUserData.put(KEY_ROLE, mUserSession.getString(KEY_ROLE, null));
         storedUserData.put(KEY_GENDER, mUserSession.getString(KEY_GENDER, null));
         storedUserData.put(KEY_PASSWORD, mUserSession.getString(KEY_PASSWORD, null));
-        storedUserData.put(KEY_COLLEGE_NAME, mUserSession.getString(KEY_COLLEGE_NAME, null));
+        storedUserData.put(KEY_INSTITUTE, mUserSession.getString(KEY_INSTITUTE, null));
         storedUserData.put(KEY_COURSE, mUserSession.getString(KEY_COURSE, null));
         storedUserData.put(KEY_ID, mUserSession.getString(KEY_ID, null));
         storedUserData.put(KEY_BIRTHDAY, mUserSession.getString(KEY_BIRTHDAY, null));
