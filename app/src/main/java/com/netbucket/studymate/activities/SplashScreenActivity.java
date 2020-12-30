@@ -30,7 +30,7 @@ public class SplashScreenActivity extends AppCompatActivity {
     TextView mTextMadeWith;
     ImageView mLove;
     TextView mTextInIndia;
-    String mIsApproved;
+    String mUserStatus;
     String mRole;
     SharedPreferences onBoardingScreenPrefs;
     private FirebaseAuth mAuth;
@@ -76,28 +76,34 @@ public class SplashScreenActivity extends AppCompatActivity {
                 finish();
             } else if ((mUser != null) && sessionManager.checkIfLoggedIn()) {
                 HashMap<String, String> userData = sessionManager.getUserDataFromSession();
-                mIsApproved = userData.get(SessionManager.KEY_APPROVAL_STATUS);
+                mUserStatus = userData.get(SessionManager.KEY_USER_STATUS);
                 mRole = userData.get(SessionManager.KEY_ROLE);
 
-                if (mIsApproved.equals("true")) {
+                if (mUserStatus.equals("allowed")) {
+
                     switch (Objects.requireNonNull(mRole)) {
                         case "Student":
                             Intent studentDashboardIntent = new Intent(SplashScreenActivity.this, StudentDashboardActivity.class);
                             studentDashboardIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(studentDashboardIntent);
                             finish();
+                            break;
 
-                        case "Faculty":
-                            Intent facultyDashboardIntent = new Intent(SplashScreenActivity.this, FacultyDashboardActivity.class);
+                        case "Faculty Member":
+                            Intent facultyDashboardIntent = new Intent(SplashScreenActivity.this, FacultyMemberDashboardActivity.class);
                             facultyDashboardIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(facultyDashboardIntent);
                             finish();
+                            break;
 
                         case "Admin/HOD":
                             Intent adminDashboardIntent = new Intent(SplashScreenActivity.this, AdminDashboardActivity.class);
                             adminDashboardIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(adminDashboardIntent);
                             finish();
+                            break;
+                        default:
+                            break;
                     }
                 } else {
                     Intent intent = new Intent(SplashScreenActivity.this, UserApprovalPendingActivity.class);
