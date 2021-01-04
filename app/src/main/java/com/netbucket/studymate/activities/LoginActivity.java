@@ -55,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
     private String mPhoneNumber;
     private String mUsername;
     private String mAbout;
-    private String mSemOrYear;
+    private String mTermOrYear;
     private String mProfileImageUri;
 
     @SuppressLint("UseCompatLoadingForDrawables")
@@ -157,8 +157,8 @@ public class LoginActivity extends AppCompatActivity {
                                                     mPhoneNumber = documentSnapshot1.getString("phoneNumber");
                                                     mUsername = documentSnapshot1.getString("username");
                                                     mAbout = documentSnapshot1.getString("about");
-                                                    mSemOrYear = documentSnapshot1.getString("semOrYear");
-                                                    sessionManager.createUserSession(mAuth.getCurrentUser().getUid(), mUserPath, mUserStatus, mFullName, validEmail(), mRole, mGender, validPassword(), mInstitute, mCourse, mId, mBirthday, mPhoneNumber, mUsername, mAbout, mSemOrYear, mProfileImageUri);
+                                                    mTermOrYear = documentSnapshot1.getString("termOrYear");
+                                                    sessionManager.createUserSession(mAuth.getCurrentUser().getUid(), mUserPath, mUserStatus, mFullName, validEmail(), mRole, mGender, validPassword(), mInstitute, mCourse, mId, mBirthday, mPhoneNumber, mUsername, mAbout, mTermOrYear, mProfileImageUri);
 
                                                     if (mUserStatus.equals("allowed")) {
                                                         switch (mRole) {

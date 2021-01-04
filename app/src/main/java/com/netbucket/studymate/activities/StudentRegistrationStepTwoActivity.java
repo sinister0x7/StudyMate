@@ -59,7 +59,7 @@ public class StudentRegistrationStepTwoActivity extends AppCompatActivity {
     private String mPassword;
     private String mInstitute;
     private String mCourse;
-    private String mSemOrYear;
+    private String mTermOrYear;
     private String mId;
     private String mBirthday;
     private ArrayList<String> mInstituteList;
@@ -173,7 +173,7 @@ public class StudentRegistrationStepTwoActivity extends AppCompatActivity {
                     intent1.putExtra("password", mPassword);
                     intent1.putExtra("institute", mInstitute);
                     intent1.putExtra("course", mCourse);
-                    intent1.putExtra("semOrYear", mSemOrYear);
+                    intent1.putExtra("termOrYear", mTermOrYear);
                     intent1.putExtra("id", mId);
                     intent1.putExtra("birthday", mBirthday);
                     mProgressDialog.dismiss();
@@ -227,7 +227,7 @@ public class StudentRegistrationStepTwoActivity extends AppCompatActivity {
                 .build();
         mProgressDialog.show();
 
-        mStore.collection("colleges")
+        mStore.collection("institutes")
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     for (QueryDocumentSnapshot item : queryDocumentSnapshots) {
@@ -370,7 +370,7 @@ public class StudentRegistrationStepTwoActivity extends AppCompatActivity {
         } else {
             if (semOrYearMatcher.matches() && mSemOrYearList.contains(semOrYear)) {
                 mSemOrYearLayout.setErrorEnabled(false);
-                mSemOrYear = semOrYear;
+                mTermOrYear = semOrYear;
                 return semOrYear;
             } else {
                 mSemOrYearLayout.setError(getString(R.string.error_invalid_sem_or_year));

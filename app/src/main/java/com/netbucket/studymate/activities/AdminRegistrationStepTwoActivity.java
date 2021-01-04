@@ -220,7 +220,7 @@ public class AdminRegistrationStepTwoActivity extends AppCompatActivity {
                 .build();
         mProgressDialog.show();
 
-        mStore.collection("colleges")
+        mStore.collection("institutes")
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     for (QueryDocumentSnapshot item : queryDocumentSnapshots) {

@@ -156,7 +156,7 @@ public class UserApprovalPendingActivity extends AppCompatActivity {
             mProgressDialog.show();
 
 
-            Log.i("Role:", Objects.requireNonNull(mRole));
+//            Log.i("Role:", Objects.requireNonNull(mRole));
 
             mStore.document(mUserPath)
                     .get()
@@ -284,7 +284,7 @@ public class UserApprovalPendingActivity extends AppCompatActivity {
             super.onBackPressed();
             return;
         } else {
-            mExitToast = Toasty.custom(getApplicationContext(), "Press back again to exit", R.drawable.img_logo, R.color.logo_color, Toast.LENGTH_SHORT, true, true);
+            mExitToast = Toasty.custom(getApplicationContext(), "Press back again to exit", R.drawable.img_logo, R.color.logo_color, Toast.LENGTH_SHORT, true, false);
             mExitToast.show();
         }
         mBackPressedTime = System.currentTimeMillis();
