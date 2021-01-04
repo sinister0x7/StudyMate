@@ -366,20 +366,13 @@ public class LoginActivity extends AppCompatActivity {
 
     private String validPassword() {
         String password = Objects.requireNonNull(mPasswordLayout.getEditText()).getText().toString().trim();
-        Pattern passwordPattern = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[(@#$%^&+=])(?=\\S+$).{8,20}$");
-        Matcher passwordMatcher = passwordPattern.matcher(password);
 
         if (password.isEmpty()) {
             mPasswordLayout.setError(getResources().getString(R.string.error_empty_password));
             requestFocus(mPasswordField);
         } else {
-            if (passwordMatcher.matches()) {
-                mPasswordLayout.setErrorEnabled(false);
-                return password;
-            } else {
-                mPasswordLayout.setError(getResources().getString(R.string.error_invalid_password));
-                requestFocus(mPasswordField);
-            }
+            mPasswordLayout.setErrorEnabled(false);
+            return password;
         }
         return null;
     }
