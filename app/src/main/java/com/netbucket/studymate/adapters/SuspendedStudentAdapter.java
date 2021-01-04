@@ -29,9 +29,19 @@ public class SuspendedStudentAdapter extends FirestoreRecyclerAdapter<Student, S
         holder.textViewCourse.setText(model.getCourse());
         holder.textViewId.setText(model.getId());
         holder.textViewSemOrYear.setText(model.getSemOrYear());
-        Glide.with(holder.imageViewProfileImage.getContext())
-                .load(model.getProfileImageUri())
-                .into(holder.imageViewProfileImage);
+
+        if (!model.getProfileImageUri().equals("null")) {
+            Glide.with(holder.imageViewProfileImage.getContext())
+                    .load(model.getProfileImageUri())
+                    .placeholder(R.drawable.avatar)
+                    .into(holder.imageViewProfileImage);
+        } else {
+            Glide.with(holder.imageViewProfileImage.getContext())
+                    .load(R.drawable.avatar)
+                    .placeholder(R.drawable.avatar)
+                    .into(holder.imageViewProfileImage);
+        }
+
         holder.constraintLayoutItem.setOnClickListener(v -> {
             BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(holder.constraintLayoutItem.getContext());
             View bottomSheetView = LayoutInflater.from(holder.constraintLayoutItem.getContext()).inflate(R.layout.bottom_sheet_suspended_member_options, holder.itemView.findViewById(R.id.linearLayout_bottom_sheet_container));

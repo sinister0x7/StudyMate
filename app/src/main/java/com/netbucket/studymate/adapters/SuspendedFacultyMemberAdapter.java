@@ -39,11 +39,18 @@ public class SuspendedFacultyMemberAdapter extends FirestoreRecyclerAdapter<Facu
         holder.textViewCourse.setText(model.getCourse());
         holder.textViewFacultyId.setText(model.getId());
 
-        Glide.with(holder.imageViewProfileImage.getContext())
-                .load(model.getProfileImageUri())
-                .into(holder.imageViewProfileImage);
+        if (!model.getProfileImageUri().equals("null")) {
+            Glide.with(holder.imageViewProfileImage.getContext())
+                    .load(model.getProfileImageUri())
+                    .placeholder(R.drawable.avatar)
+                    .into(holder.imageViewProfileImage);
+        } else {
+            Glide.with(holder.imageViewProfileImage.getContext())
+                    .load(R.drawable.avatar)
+                    .placeholder(R.drawable.avatar)
+                    .into(holder.imageViewProfileImage);
+        }
 
-        //TODO: Glide Placeholder
 
         holder.constraintLayoutItem.setOnClickListener(v -> {
             BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(holder.constraintLayoutItem.getContext());
@@ -62,7 +69,7 @@ public class SuspendedFacultyMemberAdapter extends FirestoreRecyclerAdapter<Facu
                 intent1.putExtra("role", model.getRole());
                 intent1.putExtra("course", model.getCourse());
                 intent1.putExtra("id", model.getId());
-                intent1.putExtra("semOrYear", model.getSemOrYear());
+                intent1.putExtra("termOrYear", model.getSemOrYear());
                 intent1.putExtra("profileImageUri", model.getProfileImageUri());
                 intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 

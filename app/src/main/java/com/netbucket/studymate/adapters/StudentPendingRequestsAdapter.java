@@ -38,9 +38,19 @@ public class StudentPendingRequestsAdapter extends FirestoreRecyclerAdapter<Stud
         holder.textViewCourse.setText(model.getCourse());
         holder.textViewId.setText(model.getId());
         holder.textViewSemOrYear.setText(model.getSemOrYear());
-        Glide.with(holder.imageViewProfileImage.getContext())
-                .load(model.getProfileImageUri())
-                .into(holder.imageViewProfileImage);
+
+        if (!model.getProfileImageUri().equals("null")) {
+            Glide.with(holder.imageViewProfileImage.getContext())
+                    .load(model.getProfileImageUri())
+                    .placeholder(R.drawable.avatar)
+                    .into(holder.imageViewProfileImage);
+        } else {
+            Glide.with(holder.imageViewProfileImage.getContext())
+                    .load(R.drawable.avatar)
+                    .placeholder(R.drawable.avatar)
+                    .into(holder.imageViewProfileImage);
+        }
+
         holder.constraintLayoutItem.setOnClickListener(v -> {
             BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(holder.constraintLayoutItem.getContext());
             View bottomSheetView = LayoutInflater.from(holder.constraintLayoutItem.getContext()).inflate(R.layout.bottom_sheet_pending_requests_options, holder.itemView.findViewById(R.id.linearLayout_bottom_sheet_container));
@@ -58,7 +68,7 @@ public class StudentPendingRequestsAdapter extends FirestoreRecyclerAdapter<Stud
                 intent1.putExtra("role", model.getRole());
                 intent1.putExtra("course", model.getCourse());
                 intent1.putExtra("id", model.getId());
-                intent1.putExtra("semOrYear", model.getSemOrYear());
+                intent1.putExtra("termOrYear", model.getSemOrYear());
                 intent1.putExtra("profileImageUri", model.getProfileImageUri());
                 intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 

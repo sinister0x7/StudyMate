@@ -33,7 +33,7 @@ public class ViewUserProfileActivity extends AppCompatActivity {
     String mRole;
     String mCourse;
     String mIdOrRollNo;
-    String mSemOrYear;
+    String mTermOrYear;
     String mProfileImageUri;
     TextView mEmailView;
     TextView mPhoneNumberView;
@@ -65,7 +65,7 @@ public class ViewUserProfileActivity extends AppCompatActivity {
         mRole = intent.getStringExtra("role");
         mCourse = intent.getStringExtra("course");
         mIdOrRollNo = intent.getStringExtra("id");
-        mSemOrYear = intent.getStringExtra("semOrYear");
+        mTermOrYear = intent.getStringExtra("termOrYear");
         mProfileImageUri = intent.getStringExtra("profileImageUri");
 
         mToolbar = findViewById(R.id.toolbar_profile);
@@ -83,22 +83,24 @@ public class ViewUserProfileActivity extends AppCompatActivity {
         mIdOrRollNoView = findViewById(R.id.textView_id_or_roll_no);
         mSemOrYearView = findViewById(R.id.textView_semester_or_year);
 
-        Glide
-                .with(ViewUserProfileActivity.this)
-                .load(mProfileImageUri)
-                .centerCrop()
-                .placeholder(R.drawable.ic_outline_location_city_24)
-                .into(mProfileImage);
-
-
         mToolbar.setTitle(mFullName);
         mToolbar.setTitleTextColor(getResources().getColor(R.color.lead_text_color, getTheme()));
-        Glide
-                .with(ViewUserProfileActivity.this)
-                .load(mProfileImageUri)
-                .centerCrop()
-                .placeholder(R.drawable.ic_outline_location_city_24)
-                .into(mProfileImage);
+
+        if (!mProfileImageUri.equals("null")) {
+            Glide
+                    .with(ViewUserProfileActivity.this)
+                    .load(mProfileImageUri)
+                    .centerCrop()
+                    .placeholder(R.drawable.ic_outline_location_city_24)
+                    .into(mProfileImage);
+        } else {
+            Glide
+                    .with(ViewUserProfileActivity.this)
+                    .load(R.drawable.ic_baseline_arrow_back_36)
+                    .centerCrop()
+                    .placeholder(R.drawable.ic_outline_location_city_24)
+                    .into(mProfileImage);
+        }
 
         if (mRole.equals("Student")) {
             mSemOrYearLayout.setVisibility(View.VISIBLE);
@@ -116,7 +118,7 @@ public class ViewUserProfileActivity extends AppCompatActivity {
         mRoleView.setText(mRole);
         mCourseView.setText(mCourse);
         mIdOrRollNoView.setText(mIdOrRollNo);
-        mSemOrYearView.setText(mSemOrYear);
+        mSemOrYearView.setText(mTermOrYear);
 
         setSupportActionBar(mToolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);

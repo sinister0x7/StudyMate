@@ -17,13 +17,11 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 import com.netbucket.studymate.R;
 import com.netbucket.studymate.activities.ViewUserProfileActivity;
 import com.netbucket.studymate.model.FacultyMember;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -43,11 +41,17 @@ public class FacultyMemberAdapter extends FirestoreRecyclerAdapter<FacultyMember
         holder.textViewFacultyId.setText(model.getId());
         holder.textViewCourse.setText(model.getCourse());
 
-        Glide
-                .with(holder.imageViewProfileImage.getContext())
-                .load(model.getProfileImageUri())
-                .placeholder(R.drawable.ic_outline_location_city_24)
-                .into(holder.imageViewProfileImage);
+        if (!model.getProfileImageUri().equals("null")) {
+            Glide.with(holder.imageViewProfileImage.getContext())
+                    .load(model.getProfileImageUri())
+                    .placeholder(R.drawable.avatar)
+                    .into(holder.imageViewProfileImage);
+        } else {
+            Glide.with(holder.imageViewProfileImage.getContext())
+                    .load(R.drawable.avatar)
+                    .placeholder(R.drawable.avatar)
+                    .into(holder.imageViewProfileImage);
+        }
 
         holder.constraintLayoutItem.setOnClickListener(v -> {
             BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(holder.constraintLayoutItem.getContext());
@@ -74,7 +78,7 @@ public class FacultyMemberAdapter extends FirestoreRecyclerAdapter<FacultyMember
                 intent1.putExtra("role", model.getRole());
                 intent1.putExtra("course", model.getCourse());
                 intent1.putExtra("id", model.getId());
-                intent1.putExtra("semOrYear", model.getSemOrYear());
+                intent1.putExtra("termOrYear", model.getSemOrYear());
                 intent1.putExtra("profileImageUri", model.getProfileImageUri());
                 intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 

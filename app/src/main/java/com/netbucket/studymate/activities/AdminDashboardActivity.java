@@ -133,12 +133,23 @@ public class AdminDashboardActivity extends AppCompatActivity {
         mUid = userData.get(SessionManager.KEY_UID);
         mPath = userData.get(SessionManager.KEY_USER_PATH);
 
-        Glide
-                .with(AdminDashboardActivity.this)
-                .load(mProfileImageUri)
-                .centerCrop()
-                .placeholder(R.drawable.ic_outline_location_city_24)
-                .into(mProfileImageView);
+
+
+        if (!mProfileImageUri.equals("null")) {
+            Glide
+                    .with(AdminDashboardActivity.this)
+                    .load(mProfileImageUri)
+                    .centerCrop()
+                    .placeholder(R.drawable.avatar)
+                    .into(mProfileImageView);
+        } else {
+            Glide
+                    .with(AdminDashboardActivity.this)
+                    .load(R.drawable.avatar)
+                    .centerCrop()
+                    .placeholder(R.drawable.avatar)
+                    .into(mProfileImageView);
+        }
     }
 
     private void setFragment(Fragment fragment) {
@@ -163,7 +174,7 @@ public class AdminDashboardActivity extends AppCompatActivity {
             super.onBackPressed();
             return;
         } else {
-            mExitToast = Toasty.custom(getApplicationContext(), "Press back again to exit", R.drawable.img_logo, R.color.logo_color, Toast.LENGTH_SHORT, true, true);
+            mExitToast = Toasty.custom(getApplicationContext(), "Press back again to exit", R.drawable.img_logo, R.color.logo_color, Toast.LENGTH_SHORT, true, false);
             mExitToast.show();
         }
         mBackPressedTime = System.currentTimeMillis();

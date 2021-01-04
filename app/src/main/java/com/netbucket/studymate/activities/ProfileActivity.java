@@ -46,7 +46,7 @@ public class ProfileActivity extends AppCompatActivity {
     String mRole;
     String mCourse;
     String mIdOrRollNo;
-    String mSemOrYear;
+    String mTermOrYear;
     String mProfileImageUri;
     TextView mEmailView;
     TextView mPhoneNumberView;
@@ -103,17 +103,28 @@ public class ProfileActivity extends AppCompatActivity {
         mInstitute = userData.get(SessionManager.KEY_INSTITUTE);
         mCourse = userData.get(SessionManager.KEY_COURSE);
         mIdOrRollNo = userData.get(SessionManager.KEY_ID);
-        mSemOrYear = userData.get(SessionManager.KEY_SEM_OR_YEAR);
+        mTermOrYear = userData.get(SessionManager.KEY_TERM_OR_YEAR);
         mProfileImageUri = userData.get(SessionManager.KEY_PROFILE_IMAGE_URI);
         mToolbar.setTitle(mFullName);
         mToolbar.setTitleTextColor(getResources().getColor(R.color.lead_text_color, getTheme()));
 
-        Glide
-                .with(ProfileActivity.this)
-                .load(mProfileImageUri)
-                .centerCrop()
-                .placeholder(R.drawable.ic_outline_location_city_24)
-                .into(mProfileImage);
+        if (!mProfileImageUri.equals("null")) {
+            Glide
+                    .with(ProfileActivity.this)
+                    .load(mProfileImageUri)
+                    .centerCrop()
+                    .placeholder(R.drawable.avatar)
+                    .into(mProfileImage);
+        } else {
+            Glide
+                    .with(ProfileActivity.this)
+                    .load(R.drawable.avatar)
+                    .centerCrop()
+                    .placeholder(R.drawable.avatar)
+                    .into(mProfileImage);
+        }
+
+
 
         if (mRole.equals("Student")) {
             mSemOrYearLayout.setVisibility(View.VISIBLE);
@@ -131,7 +142,7 @@ public class ProfileActivity extends AppCompatActivity {
         mInstituteView.setText(mInstitute);
         mCourseView.setText(mCourse);
         mIdOrRollNoView.setText(mIdOrRollNo);
-        mSemOrYearView.setText(mSemOrYear);
+        mSemOrYearView.setText(mTermOrYear);
 
         setSupportActionBar(mToolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
