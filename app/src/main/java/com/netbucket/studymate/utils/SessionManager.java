@@ -23,7 +23,7 @@ public class SessionManager {
     public static final String KEY_PHONE_NUMBER = "phoneNumber";
     public static final String KEY_USERNAME = "username";
     public static final String KEY_ABOUT = "about";
-    public static final String KEY_SEM_OR_YEAR = "semOrYear";
+    public static final String KEY_TERM_OR_YEAR = "termOrYear";
     public static final String KEY_PROFILE_IMAGE_URI = "profileImageUri";
     private static final String IS_LOGGED_IN = "isLoggedIn";
 //    private static final int KEY_SIZE = 256;
@@ -77,7 +77,7 @@ public class SessionManager {
         mSharedPrefEditor.putString(KEY_PHONE_NUMBER, phoneNumber);
         mSharedPrefEditor.putString(KEY_USERNAME, username);
         mSharedPrefEditor.putString(KEY_ABOUT, about);
-        mSharedPrefEditor.putString(KEY_SEM_OR_YEAR, semOrYear);
+        mSharedPrefEditor.putString(KEY_TERM_OR_YEAR, semOrYear);
         mSharedPrefEditor.putString(KEY_PROFILE_IMAGE_URI, profileImageUri);
 
         mSharedPrefEditor.apply();
@@ -105,7 +105,7 @@ public class SessionManager {
         storedUserData.put(KEY_PHONE_NUMBER, mUserSession.getString(KEY_PHONE_NUMBER, null));
         storedUserData.put(KEY_USERNAME, mUserSession.getString(KEY_USERNAME, null));
         storedUserData.put(KEY_ABOUT, mUserSession.getString(KEY_ABOUT, null));
-        storedUserData.put(KEY_SEM_OR_YEAR, mUserSession.getString(KEY_SEM_OR_YEAR, null));
+        storedUserData.put(KEY_TERM_OR_YEAR, mUserSession.getString(KEY_TERM_OR_YEAR, null));
         storedUserData.put(KEY_PROFILE_IMAGE_URI, mUserSession.getString(KEY_PROFILE_IMAGE_URI, null));
         return storedUserData;
     }
