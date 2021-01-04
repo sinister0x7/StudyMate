@@ -296,6 +296,7 @@
     <string name="title_pg_about_us">Meet The Developers</string>
     <string name="content_dialog_setting_up_your_account">XX</string>
     <string name="content_dialog_logout">Signing Out....</string>
+    <string name="content_desc_add_note">Add Note</string>
 
 
     <!-- Unused Content Descriptions -->
