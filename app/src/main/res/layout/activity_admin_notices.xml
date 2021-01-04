@@ -41,6 +41,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
+        android:tint="@color/lead_text_color"
         android:contentDescription="@string/content_desc_add_notice"
         android:src="@drawable/ic_baseline_note_add_24"
         app:backgroundTint="@color/colorAccent"

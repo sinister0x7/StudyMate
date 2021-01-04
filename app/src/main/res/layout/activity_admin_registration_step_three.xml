@@ -154,6 +154,7 @@
                         android:id="@+id/floatingActionButton_camera"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:tint="@color/lead_text_color"
                         android:layout_alignEnd="@+id/imageView_profile_image"
                         android:layout_alignBottom="@+id/imageView_profile_image"
                         android:contentDescription="@string/content_desc_edit_profile_fab"

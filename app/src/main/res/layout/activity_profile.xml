@@ -437,6 +437,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
+        android:tint="@color/lead_text_color"
         android:contentDescription="@string/content_desc_edit_profile_fab"
         android:src="@drawable/ic_baseline_edit_24"
         app:backgroundTint="@color/colorAccent"
