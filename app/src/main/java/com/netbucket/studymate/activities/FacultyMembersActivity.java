@@ -12,25 +12,21 @@ import androidx.core.content.ContextCompat;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.ferfalk.simplesearchview.SimpleSearchView;
-import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.netbucket.studymate.R;
-import com.netbucket.studymate.adapters.FacultyMemberAdapter;
-import com.netbucket.studymate.adapters.FacultyMemberPendingRequestsAdapter;
 import com.netbucket.studymate.adapters.FacultyMembersPagerAdapter;
 import com.netbucket.studymate.fragments.FacultyMemberPendingRequestsFragment;
 import com.netbucket.studymate.fragments.FacultyMembersFragment;
 import com.netbucket.studymate.fragments.SuspendedFacultyMembersFragment;
-import com.netbucket.studymate.model.FacultyMember;
 
 public class FacultyMembersActivity extends AppCompatActivity {
 
     SimpleSearchView searchView;
     MaterialToolbar materialToolbar;
-    int mPosition=0;
+    int mPosition = 0;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -58,7 +54,7 @@ public class FacultyMembersActivity extends AppCompatActivity {
         viewPager.setAdapter(new FacultyMembersPagerAdapter(this));
         TabLayout tabLayout = findViewById(R.id.tabLayout_faculty_members);
         TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
-            mPosition= position;
+            mPosition = position;
             switch (position) {
                 case 0:
                     tab.setText(R.string.title_tab_faculty_members);
@@ -87,9 +83,9 @@ public class FacultyMembersActivity extends AppCompatActivity {
             public boolean onQueryTextSubmit(String query) {
                 switch (mPosition) {
                     case 0:
-                    FacultyMembersFragment facultyMembersFragment = new FacultyMembersFragment();
-                    facultyMembersFragment.processSearch(query);
-                    break;
+                        FacultyMembersFragment facultyMembersFragment = new FacultyMembersFragment();
+                        facultyMembersFragment.processSearch(query);
+                        break;
                     case 1:
                         FacultyMemberPendingRequestsFragment facultyMemberPendingRequestsFragment = new FacultyMemberPendingRequestsFragment();
                         facultyMemberPendingRequestsFragment.processSearch(query);
